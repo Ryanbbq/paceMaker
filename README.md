@@ -1,4 +1,4 @@
-# CST 438 Project 1
+# CST 438 Final Project
 # This is the paceMaker!
 
 ## Team
