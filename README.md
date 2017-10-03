@@ -1,2 +1,2 @@
 # paceMaker
-cst 438 project 1
+# this is the paceMaker
