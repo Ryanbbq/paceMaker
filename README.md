@@ -6,7 +6,7 @@ Monique, Brian , Ryan , Kristine
 
 # Deliverables
 
-We will produce pieces of software with great excellence.
+We aim to deliver a...
 
 
 # Motivation
@@ -14,3 +14,5 @@ We will produce pieces of software with great excellence.
 We are motivated by our school, and the challenges that they give to us.
 
 # Approach and Techologies
+
+We aim to use several API's and construct a plethora of web applications
