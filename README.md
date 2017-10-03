@@ -4,15 +4,5 @@
 # Team
 Monique, Brian , Ryan , Kristine
 
-# Deliverables
-
-We aim to deliver a...
-
-
-# Motivation
-
-We are motivated by our school, and the challenges that they give to us.
-
-# Approach and Techologies
-
-We aim to use several API's and construct a plethora of web applications
+# More Information...
+Please visit our Wiki Page for more information and specifications regarding our project.
