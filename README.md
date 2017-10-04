@@ -1,5 +1,5 @@
 # CST 438 Final Project
-# This is the paceMaker!
+# Recipe Vision
 
 ## Team
 Monique, Brian , Ryan , Kristine
