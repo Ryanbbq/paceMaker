@@ -1,7 +1,6 @@
 var expect = require("chai").expect; 
 
-
-var add = require("simple-function").add; 
+var add = require('./simple-function').add; 
 
 describe("Add function", function() {
     it("should return the sum of 2 numbers", function(done) {
@@ -11,7 +10,3 @@ describe("Add function", function() {
     }); 
 
 }); 
-
-
-
-//console.log(add(3, 4)); 
