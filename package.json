@@ -1,0 +1,29 @@
+{
+  "name": "recipevision",
+  "version": "1.0.0",
+  "description": "cst 438 project 1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ryanbbq/paceMaker.git"
+  },
+  "author": "Ryan Le Bon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ryanbbq/paceMaker/issues"
+  },
+  "homepage": "https://github.com/Ryanbbq/paceMaker#readme",
+  "dependencies": {
+    "express": "^4.16.1"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "recipes",
+    "google",
+    "api",
+    "vison"
+  ]
+}
