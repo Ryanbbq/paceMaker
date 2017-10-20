@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node index.js",
   
-    "test": "node ./node_modules/mocha/bin/mocha"
+    "test": "mocha"
   },
   "dependencies": {
     "ejs": "2.5.6",
