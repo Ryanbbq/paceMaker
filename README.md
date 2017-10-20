@@ -15,5 +15,6 @@ Please visit our Wiki Page for more information and specifications regarding our
 2. npm start
 
 ## Circle Ci Test
-[Imgur](https://i.imgur.com/EiH1Bp7.png)
-![](http://)
+https://circleci.com/gh/Ryanbbq/paceMaker
+![](https://i.imgur.com/EiH1Bp7.png)
+
