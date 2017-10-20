@@ -1,4 +1,4 @@
-# CST 438 Final Project
+# CST 438 Project 1
 # Recipe Vision
 
 ## Heroku Deployed 
