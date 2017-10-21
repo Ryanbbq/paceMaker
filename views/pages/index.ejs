@@ -23,7 +23,10 @@
         console.log("EDAMAME BEAN API BEGIN");
             
         //Clears the table's contents after each new search
-        $("#table").html("");
+        $("#label").html("");
+        $("#image").html("");
+        $("#source").html("");
+        $("sourceURL").html("");
 
         //AJAX request from the BetterDoctor API https://api.betterdoctor.com
         $.ajax({
@@ -44,14 +47,29 @@
             },
         
             success: function(data,status) {
-                console.log(data);
-         
+              console.log(data);
+              console.log(data.length);
+              for(var i = 0 ; i <3;i++){
+              console.log(data["hits"][i]["recipe"]["label"]);
+              $("#oneSpan").append("<h1><a href='" + data["hits"][i]["recipe"]["url"] + "'>" + data["hits"][i]["recipe"]["label"] + "</a></h1>" + "<br>" +
+                                  "<img src='" +data["hits"][i]["recipe"]["image"] + "'>" + "<br>" +
+                                  "<h1>Calories: " + data["hits"][i]["recipe"]["calories"]+"</h1><br>" );
+       
+       
+          //    $("#label").append(data["hits"][i]["recipe"]["label"] + "<br>");
+           //   $("#image").append("<img src='" +data["hits"][i]["recipe"]["image"] + "'>" + "<br>");     
+            //  $("#source").append(data["hits"][i]["recipe"]["source"] + "<br>");
+            //  $("#label").append("<a href='" + data["hits"][i]["recipe"]["url"] + "'>" + data["hits"][i]["recipe"]["label"] + "</a>" + "<br>");
+              // console.log(data["q"]["hits"][1]["recipe"]["label"]);
+            //  $("#calories").append(data["hits"][i]["recipe"]["calories"]+"<br>");
+              console.log(data["hits"][i]["recipe"]["url"]);
+              }
             },
         
             complete: function(data,status) { //optional, used for debugging purposes
-            console.log("Debugger, error retrieving information..");
-            console.log(data);
-                console.log(status);
+         //   console.log("Debugger, error retrieving information..");
+           // console.log(data);
+             //   console.log(status);
             }
         
 		});//AJAX
@@ -63,7 +81,6 @@
   <body>
       <div class="jumbotron text-center">
         <h1>Recipe Vision</h1>
-        <p>Resize this responsive page to see the effect!</p> 
         
             <ul class="nav justify-content-center">
             <li class="nav-item">
@@ -76,36 +93,29 @@
               <a class="nav-link" href="#">Food</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link disabled" href="#">Disabled</a>
+              <a class="nav-link disabled" href="#">Links are Disabled</a>
             </li>
             </ul>
-            
-            <center><br><br><input type="text" id="searchValue" placeholder="search by name"><br><br><button type="button" onclick="recipeSearch()" class="btn btn-primary btn-lg">Search</button></center>
-      </div>
-      
-        
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-4">
-            <h3>About</h3>
-            <p>What is Recipe Vision?</p>
-            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-          </div>
-          <div class="col-sm-4">
-            <h3>Food</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-          </div>
-          <div class="col-sm-4">
-            <h3>Column 3</h3>        
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-          </div>
         </div>
+
+           <div class="container">
+        <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search" name="search" id="searchValue">
+      <div class="input-group-btn">
+        <button class="btn btn-default" type="submit" onclick="recipeSearch()">
+          Search
+          </button>
       </div>
-      
-      
-      </div>
-  </body>  
+    </div>
+    <div class="container">
+
+<center>
+  <span id="oneSpan"></span>
+</center>
+
+       
+
+    
+    </body>  
   
 </html>
