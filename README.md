@@ -13,3 +13,8 @@ Please visit our Wiki Page for more information and specifications regarding our
 ## To Start
 1. npm install
 2. npm start
+
+## Circle Ci Test
+https://circleci.com/gh/Ryanbbq/paceMaker
+![](https://i.imgur.com/EiH1Bp7.png)
+
