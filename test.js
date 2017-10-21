@@ -16,4 +16,8 @@ describe("Add function", function() {
     expect(multiply(5,5)).to.equal(25);
     
     });
+   /* it("should return the subtraction of 2 numbers",function(){
+        expect(subtraction(10,7)).to.equals(3);
+    });
+    */
 }); 
