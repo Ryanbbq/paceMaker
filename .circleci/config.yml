@@ -25,7 +25,8 @@ jobs:
           - v1-dependencies-{{ checksum "package.json" }}
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
-
+    
+    # Specify the installs for npm  we can use npm test for the run #which is test.js
       - run: npm install
       - run: npm install mocha
       - run: npm install chai
