@@ -4,17 +4,67 @@
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script rel="javascript" type="text/javascript" href="js/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script language="javascript" type ="text/javascript"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   </head>
   
+<script>
+//Recipe Search Function
+    function recipeSearch(){
+        //alert("Clicked!");
+      
+        console.log("Hello");
+            
+        //Clears the table's contents after each new search
+        $("#table").html("");
+
+        //AJAX request from the BetterDoctor API https://api.betterdoctor.com
+        $.ajax({
+            //get method
+            type: "get",
+                
+            //gets the url from the api 
+            url: "https://api.edamam.com/search",
+                
+            //JSON, or JavaScript Object Notation, is a minimal, readable format for structuring data. 
+            //It is used primarily to transmit data between a server and web application, as an alternative to XML.
+            dataType: "json",
+                
+            // EDAMAM API
+            data: {
+                "q":$("#searchValue").val(),
+                "app_key":"", // API Key PLEASE USE YOUR OWN
+            },
+        
+            success: function(data,status) {
+                console.log(data);
+         
+            },
+        
+            complete: function(data,status) { //optional, used for debugging purposes
+            console.log("Debugger, error retrieving information..");
+            console.log(data);
+                console.log(status);
+            }
+        
+		});//AJAX
+
+    } //End of recipeSearch() function.
+        
+</script>
   
   <body>
       <div class="jumbotron text-center">
         <h1>Recipe Vision</h1>
         <p>Resize this responsive page to see the effect!</p> 
         
-      
-      
-              <ul class="nav justify-content-center">
+            <ul class="nav justify-content-center">
             <li class="nav-item">
               <a class="nav-link active" href="#">Main</a>
             </li>
@@ -27,9 +77,9 @@
             <li class="nav-item">
               <a class="nav-link disabled" href="#">Disabled</a>
             </li>
-         <br>
-      
-            </ul><center><br> <br >  <input type="text" id="searchValue" placeholder="search by name"><br><br><button type="button" class="btn btn-primary btn-lg">Search</button></center>
+            </ul>
+            
+            <center><br><br><input type="text" id="searchValue" placeholder="search by name"><br><br><button type="button" onclick="recipeSearch()" class="btn btn-primary btn-lg">Search</button></center>
       </div>
       
         

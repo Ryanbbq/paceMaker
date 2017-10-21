@@ -39,9 +39,7 @@ service = build('compute', 'v1', credentials=credentials)
 
 print("Hello google vision")
 #path = 'testImage.jpg'
-#POST https://vision.googleapis.com/v1/images:annotate?key=AIzaSyAgbUpBiD8-oj_UDzRg2LkkEa-gEWTguWw	
-#GOOGLE_APPLICATION_CREDENTIALS='AIzaSyAgbUpBiD8-oj_UDzRg2LkkEa-gEWTguWw'
-##path = 'http://2.bp.blogspot.com/-BaEka2Zym54/U76VsttfZMI/AAAAAAAACMY/epaDF2y0Jbg/s1600/URL-tagging-image.png'
+
 def annotate(path):
    
     """Returns web annotations given the path to an image."""
