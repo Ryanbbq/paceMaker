@@ -17,42 +17,38 @@
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   </head>
+  
   <style>
   #divOne{
-    margin: auto;
-    width: 50%;
-    border: 5px solid black;
-    padding: 30px;
-    background-color:white;
-    border-radius: 25px;
-    font-style: oblique;
-    background-color: lightblue;
-
-
-
+  margin: auto;
+  width: 50%;
+  border: 5px solid black;
+  padding: 30px;
+  background-color:white;
+  border-radius: 25px;
+  font-style: oblique;
+  background-color: lightblue;
   }
   #jumbo{
-     background-image: url("https://i.imgur.com/JcsaUOC.png");
-     background-color:white;
-     
-     
-     
+  background-image: url("https://i.imgur.com/JcsaUOC.png");
+  background-color:white;
+  
   }
   
   #title1{
-     font-family: "Times New Roman", Times, serif;
-     font-size:4em;
-     font-weight:bold;
-     color:white;
-      text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
-
+  font-family: "Times New Roman", Times, serif;
+  font-size:4em;
+  font-weight:bold;
+  color:white;
+  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+  
   }
   #navBar{
-     font-family: "Times New Roman", Times, serif;
-     font-size:2.5em;
-     font-weight:bold;
-     color:white;
-      text-shadow: 1px 1px 2px white, 0 0 25px black, 0 0 5px black;
+  font-family: "Times New Roman", Times, serif;
+  font-size:2.5em;
+  font-weight:bold;
+  color:white;
+  text-shadow: 1px 1px 2px white, 0 0 25px black, 0 0 5px black;
   }
   .footer {
   position: absolute;
@@ -62,7 +58,7 @@
   padding: 1rem;
   background-color: #efefef;
   text-align: center;
-}
+  }
   </style>
   
 <script>
@@ -74,7 +70,7 @@
     function recipeSearch(){
         //alert("Clicked!");
       
-        console.log("EDAMAME BEAN API BEGIN");
+        console.log("EDAMAM API");
             
         //Clears the table's contents after each new search
         $("#label").html("");
@@ -83,7 +79,7 @@
         //add a hashtag
         $("#oneSpan").html("");
 
-        //AJAX request from the BetterDoctor API https://api.betterdoctor.com
+        //AJAX request for Edamam API
         $.ajax({
             //get method
             type: "get",
@@ -112,22 +108,11 @@
                              
                                   "<img src='" +data["hits"][i]["recipe"]["image"] + "'>" + "<br>" + "</div>")
                                   ;
-       
-       
-          //    $("#label").append(data["hits"][i]["recipe"]["label"] + "<br>");
-           //   $("#image").append("<img src='" +data["hits"][i]["recipe"]["image"] + "'>" + "<br>");     
-            //  $("#source").append(data["hits"][i]["recipe"]["source"] + "<br>");
-            //  $("#label").append("<a href='" + data["hits"][i]["recipe"]["url"] + "'>" + data["hits"][i]["recipe"]["label"] + "</a>" + "<br>");
-              // console.log(data["q"]["hits"][1]["recipe"]["label"]);
-            //  $("#calories").append(data["hits"][i]["recipe"]["calories"]+"<br>");
-              console.log(data["hits"][i]["recipe"]["url"]);
               }
             },
         
-            complete: function(data,status) { //optional, used for debugging purposes
-         //   console.log("Debugger, error retrieving information..");
-           // console.log(data);
-             //   console.log(status);
+            complete: function(data,status) { 
+              console.log(status);
             }
         
 		});//AJAX
@@ -142,7 +127,7 @@
           <script>
                  window.fbAsyncInit = function() {
         FB.init({
-          appId      : '168050303776214',
+          appId      : 'use app id here',
           cookie     : true,
           xfbml      : true,
           version    : 'v2.10'
@@ -229,7 +214,7 @@
     </div>
     <br><br><br><br>
        <div class="fb-login-button" data-max-rows="1" data-size="small" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
-            <div id="shareBtn" class="btn btn-success clearfix">Share</div>
+            <div id="shareBtn" class="btn btn-success clearfix" data-size="small">Share</div>
       
         <script>
         document.getElementById('shareBtn').onclick = function() {
