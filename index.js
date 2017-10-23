@@ -11,7 +11,6 @@ app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
   response.render('pages/index');
-<<<<<<< HEAD
 });
 
 //app.use('/about', about); 
@@ -21,8 +20,7 @@ app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
-=======
->>>>>>> parent of 8785c58... Adding features, and header.ejs template
+
 });
 
 
