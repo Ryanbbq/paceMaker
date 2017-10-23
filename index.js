@@ -32,9 +32,9 @@ app.use('/features',features);
 
 
 
-/*app.get('/', function(request, response) {
+app.get('/', function(request, response) {
   response.render('pages/index');
-});*/
+});
 
 //app.use('/about', about); 
 
