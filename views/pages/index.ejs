@@ -18,43 +18,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   </head>
   
-  
-  <!-- styles need to be including in a css folder -->
-  <style>
-  #divOne{
-  margin: auto;
-  width: 50%;
-  border: 5px solid black;
-  padding: 30px;
-  background-color:white;
-  border-radius: 25px;
-  font-style: oblique;
-  background-color: lightblue;
-  }
-  #jumbo{
-  background-image: url("https://i.imgur.com/JcsaUOC.png");
-  background-color:white;
-  
-  }
-  
-  #title1{
-  font-family: "Times New Roman", Times, serif;
-  font-size:4em;
-  font-weight:bold;
-  color:white;
-  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
-  
-  }
-  #navBar{
-  font-family: "Times New Roman", Times, serif;
-  font-size:2.5em;
-  font-weight:bold;
-  color:white;
-  text-shadow: 1px 1px 2px white, 0 0 25px black, 0 0 5px black;
-  }
- 
 
-  </style>
   
 <script>
 
@@ -146,42 +110,7 @@
      
       </script>
       <!-- Start Layout -->
-      <div class="jumbotron text-center" id="jumbo">
-        <h1 id="title1">Recipe Vision</h1>
-      
-        </div>
-
-      <div class="container">
-        <hr>
-        <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-          <a class="navbar-brand" href="#">Navbar</a>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Dropdown link
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-              </li>
-            </ul>
-          </div>
-          </nav>
+     <% include templates/header.ejs %>
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Search" name="search" id="searchValue">
           <div class="input-group-btn">
