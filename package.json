@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "## Heroku Deployed  https://pacemaker438.herokuapp.com/",
   "main": "index.js",
+  "engines": {
+    "node": "6.11.1"
+  },
   "dependencies": {
     "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",
