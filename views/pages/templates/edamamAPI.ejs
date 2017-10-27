@@ -1,0 +1,59 @@
+<script>
+
+//Recipe Search Function
+    function recipeSearch(){
+        //alert("Clicked!");
+      
+        console.log("EDAMAM API");
+            
+        //Clears the div's contents after each new search
+        $("#label").html("");
+        $("#image").html("");
+        $("#source").html("");
+        $("#oneSpan").html("");
+
+        //AJAX request for Edamam API
+        $.ajax({
+            //get method
+            type: "get",
+                
+            //gets the url from the api 
+            url: "https://api.edamam.com/search",
+                
+            //JSON, or JavaScript Object Notation, is a minimal, readable format for structuring data. 
+            //It is used primarily to transmit data between a server and web application, as an alternative to XML.
+            dataType: "json",
+                
+            // EDAMAM API
+            data: {
+                "q":$("#searchValue").val(),
+                "app_key":"", // API Key PLEASE USE YOUR OWN
+            },
+        
+            success: function(data,status) {
+              console.log(data);
+              console.log(data.length);
+              for(var i = 0 ; i <5;i++){
+              console.log(data["hits"][i]["recipe"]["label"]);
+              $("#oneSpan").append("<br><div class='container' id='divOne'>" +
+                                  "<h1><a href='" + data["hits"][i]["recipe"]["url"] + "'  target='_blank'>" + data["hits"][i]["recipe"]["label"] + "</a></h1>" + "<br>" +
+                                  "<h3>Calories: " +  Math.round(data["hits"][i]["recipe"]["calories"])+"</h3><br>" +
+                                  "<h3>Diet Labels: " + data["hits"][i]["recipe"]["dietLabels"] + "</h3><br>" + 
+                                  "<h3>Source: " + data["hits"][i]["recipe"]["source"] + "</h3><br>" + 
+                             
+                                  "<img src='" +data["hits"][i]["recipe"]["image"] + "'>" + "<br>" +
+                                  
+                                  "</div>")
+                                  ;
+              }
+            },
+        
+            complete: function(data,status) { 
+              console.log(status);
+            }
+        
+		});//AJAX
+
+    } //End of recipeSearch() function.
+        
+</script>

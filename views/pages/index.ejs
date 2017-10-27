@@ -3,150 +3,47 @@
     <title>
     Recipe Vision
     </title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-        
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script rel="javascript" type="text/javascript" href="js/jquery-1.11.3.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-        <script language="javascript" type ="text/javascript"></script>
-
-        
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <% include templates/includes.ejs %>
+  <% include templates/edamamAPI.ejs %>
   </head>
-  
-  
-  <!-- styles need to be including in a css folder -->
-  <style>
-  #divOne{
-  margin: auto;
-  width: 50%;
-  border: 5px solid black;
-  padding: 30px;
-  background-color:white;
-  border-radius: 25px;
-  font-style: oblique;
-  background-color: lightblue;
-  }
-  #jumbo{
-  background-image: url("https://i.imgur.com/JcsaUOC.png");
-  background-color:white;
-  
-  }
-  
-  #title1{
-  font-family: "Times New Roman", Times, serif;
-  font-size:4em;
-  font-weight:bold;
-  color:white;
-  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
-  
-  }
-  #navBar{
-  font-family: "Times New Roman", Times, serif;
-  font-size:2.5em;
-  font-weight:bold;
-  color:white;
-  text-shadow: 1px 1px 2px white, 0 0 25px black, 0 0 5px black;
-  }
- 
-
-  </style>
-  
-<script>
-
- 
-
-
-//Recipe Search Function
-    function recipeSearch(){
-        //alert("Clicked!");
-      
-        console.log("EDAMAM API");
-            
-        //Clears the table's contents after each new search
-        $("#label").html("");
-        $("#image").html("");
-        $("#source").html("");
-        //add a hashtag
-        $("#oneSpan").html("");
-
-        //AJAX request for Edamam API
-        $.ajax({
-            //get method
-            type: "get",
-                
-            //gets the url from the api 
-            url: "https://api.edamam.com/search",
-                
-            //JSON, or JavaScript Object Notation, is a minimal, readable format for structuring data. 
-            //It is used primarily to transmit data between a server and web application, as an alternative to XML.
-            dataType: "json",
-                
-            // EDAMAM API
-            data: {
-                "q":$("#searchValue").val(),
-                "app_key":"", // API Key PLEASE USE YOUR OWN
-            },
-        
-            success: function(data,status) {
-              console.log(data);
-              console.log(data.length);
-              for(var i = 0 ; i <5;i++){
-              console.log(data["hits"][i]["recipe"]["label"]);
-              $("#oneSpan").append("<br><div class='container' id='divOne'>" + "<h1><a href='" + data["hits"][i]["recipe"]["url"] + "'  target='_blank'>" + data["hits"][i]["recipe"]["label"] + "</a></h1>" + "<br>" +
-                                  "<h1>Calories: " +  Math.round(data["hits"][i]["recipe"]["calories"])+"</h1><br>" +
-                                  "<h1>Diet Labels: " + data["hits"][i]["recipe"]["dietLabels"] + "</h1><br>" + 
-                             
-                                  "<img src='" +data["hits"][i]["recipe"]["image"] + "'>" + "<br>" + "</div>")
-                                  ;
-              }
-            },
-        
-            complete: function(data,status) { 
-              console.log(status);
-            }
-        
-		});//AJAX
-
-    } //End of recipeSearch() function.
-        
-</script>
   
   <body>
     
     <div id="fb-root"></div>
-          <script>
-                 window.fbAsyncInit = function() {
-        FB.init({
-          appId      : 'use app id here',
-          cookie     : true,
-          xfbml      : true,
-          version    : 'v2.10'
-        });
-          
-        FB.AppEvents.logPageView();   
-          
-      };
-          
-
     
-      (function(d, s, id){
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) {return;}
-         js = d.createElement(s); js.id = id;
-         js.src = "https://connect.facebook.net/en_US/sdk.js";
-         fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));
-       
-       
-     
-      </script>
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : 'use app id here',
+        cookie     : true,
+        xfbml      : true,
+        version    : 'v2.10'
+      });
+      
+      FB.AppEvents.logPageView();   
+    
+    };
+    
+    
+    
+    (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }
+    (document, 'script', 'facebook-jssdk'));
+  
+  
+  
+  </script>
+
+<!-- Inclue header template -->
       <% include templates/header.ejs %>
         
+        
+        <!-- Buttons for recipeSearch() function -->
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Search" name="search" id="searchValue">
           <div class="input-group-btn">
@@ -157,7 +54,7 @@
         </div>
     
         <script>
-            
+        // allows the user to press 'enter' to search
         document.getElementById("searchValue")
             .addEventListener("keyup", function(event) {
             event.preventDefault();
@@ -167,17 +64,19 @@
         });
         </script>
         
-        
+    <!-- Recipe Display -->
     <div class="container">
-    <center>
-      <span id="oneSpan"></span>
-    </center>
+      <center>
+        <span id="oneSpan"></span>
+      </center>
     </div>
-    <br><br><br><br>
+    
+    <!-- Facebook Login/Share Buttons -->
        <div class="fb-login-button" data-max-rows="1" data-size="small" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
             <div id="shareBtn" class="btn btn-success clearfix" data-size="small">Share</div>
       
         <script>
+        // Facebook API share button
         document.getElementById('shareBtn').onclick = function() {
           FB.ui({
             method: 'share',
@@ -186,11 +85,7 @@
           }, function(response){});
         }
         </script>
-        
 
-      
-    
     </body>  
-
 
 </html>
