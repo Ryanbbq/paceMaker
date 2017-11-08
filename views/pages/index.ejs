@@ -9,43 +9,13 @@
   
   <body>
     
-    <div id="fb-root"></div>
-    
-  <script>
-    window.fbAsyncInit = function() {
-      FB.init({
-        appId      : 'use app id here',
-        cookie     : true,
-        xfbml      : true,
-        version    : 'v2.10'
-      });
-      
-      FB.AppEvents.logPageView();   
-    
-    };
-    
-    
-    
-    (function(d, s, id){
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {return;}
-      js = d.createElement(s); js.id = id;
-      js.src = "https://connect.facebook.net/en_US/sdk.js";
-      fjs.parentNode.insertBefore(js, fjs);
-    }
-    (document, 'script', 'facebook-jssdk'));
-  
-  
-  
-  </script>
-
 <!-- Inclue header template -->
       <% include templates/header.ejs %>
         
-        
+
         <!-- Buttons for recipeSearch() function -->
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search" name="search" id="searchValue">
+          <input type="text" class="form-control" placeholder="search for a type of food..." name="search" id="searchValue" >
           <div class="input-group-btn">
               <button class="btn btn-default" type="submit" onclick="recipeSearch()" id="button1">
               Search
@@ -53,16 +23,9 @@
           </div>
         </div>
     
-        <script>
-        // allows the user to press 'enter' to search
-        document.getElementById("searchValue")
-            .addEventListener("keyup", function(event) {
-            event.preventDefault();
-            if (event.keyCode == 13) {
-                document.getElementById("button1").click();
-            }
-        });
-        </script>
+    <script>
+ 
+    </script>
         
     <!-- Recipe Display -->
     <div class="container">
@@ -71,21 +34,16 @@
       </center>
     </div>
     
-    <!-- Facebook Login/Share Buttons -->
-       <div class="fb-login-button" data-max-rows="1" data-size="small" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
-            <div id="shareBtn" class="btn btn-success clearfix" data-size="small">Share</div>
-      
-        <script>
-        // Facebook API share button
-        document.getElementById('shareBtn').onclick = function() {
-          FB.ui({
-            method: 'share',
-            display: 'popup',
-            href: 'https://pacemaker438.herokuapp.com/',
-          }, function(response){});
-        }
-        </script>
 
     </body>  
-
+    <script>
+         // allows the user to press 'enter' to search
+        document.getElementById("searchValue")
+            .addEventListener("keyup", function(event) {
+            event.preventDefault();
+            if (event.keyCode == 13) {
+                document.getElementById("button1").click();
+            }
+        });
+    </script>
 </html>

@@ -4,12 +4,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-//file paths
+//file paths for routing...
 var routes = require('./routes/index');
 var features = require('./routes/features');
 
 
-
+//create app start express
 var app = express();
 
 
@@ -32,6 +32,7 @@ app.get('/', function(request, response) {
 });*/
 //app.use('/', routes);
 
+// page routing dependencies
 app.use('/',routes);
 app.use('/features',features);
 

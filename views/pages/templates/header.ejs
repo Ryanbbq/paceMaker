@@ -7,7 +7,7 @@
     background-color:white;
     border-radius: 25px;
     font-style: oblique;
-    background-color: lightblue;
+    background-color: white;
     }
     #jumbo{
     background-image: url("https://i.imgur.com/JcsaUOC.png");
@@ -29,6 +29,19 @@
     color:white;
     text-shadow: 1px 1px 2px white, 0 0 25px black, 0 0 5px black;
     }
+.nav-link{
+    color:black;
+    font-size:1.5em;
+  
+}
+.navbar-brand{
+    color:black;
+     font-size:1.5em;
+    
+}
+.navbar navbar-toggleable-md{
+    
+}
      </style>
      
      
@@ -36,10 +49,45 @@
         <h1 id="title1">Recipe Vision</h1>
       
         </div>
-
+         <div id="fb-root"></div>
+<script>
+//process.env(facebookID);
+     window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '168050303776214',
+        cookie     : true,
+        xfbml      : true,
+        version    : 'v2.10'
+      });
+      
+      FB.AppEvents.logPageView();   
+    
+    };
+    
+    
+    
+    (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }
+    (document, 'script', 'facebook-jssdk'));
+    
+            // Facebook API share button
+        document.getElementById('shareBtn').onclick = function() {
+          FB.ui({
+            method: 'share',
+            display: 'popup',
+            href: 'https://pacemaker438.herokuapp.com/',
+          }, function(response){});
+        }
+  
+</script>
 <div class="container">
     <hr>
-    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <nav class="navbar navbar-toggleable-md">
  
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -55,16 +103,16 @@
                 <a class="nav-link" href="/features">Features</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
+                <a class="nav-link" href="#">Recipes</a>
                 </li>
                 <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown link
+                Facebook
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
+                <a class="dropdown-item" href="#"><div class="fb-login-button" data-max-rows="1" data-size="small" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div></a>
+                <a class="dropdown-item" href="#"><div id="shareBtn" class="btn btn-success clearfix" data-size="small">Share</div></a>
+                <a class="dropdown-item" href="#"></a>
                 </div>
             </li>
         </ul>
