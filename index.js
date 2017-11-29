@@ -5,8 +5,10 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 //file paths for routing...
+//check the routes folder
 var routes = require('./routes/index');
 var features = require('./routes/features');
+var googleVision = require('./routes/googleVision');
 
 
 //create app start express
@@ -26,15 +28,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname + 'public')));
 app.set('port', (process.env.PORT || 5000));
 
-/*
-app.get('/', function(request, response) {
-  response.render('pages/index');
-});*/
-//app.use('/', routes);
+
 
 // page routing dependencies
-app.use('/',routes);
-app.use('/features',features);
+// use this format if you want to add a page
+app.use('/', routes);
+app.use('/features', features);
+app.use('/googleVision', googleVision);
 
 
 
@@ -53,6 +53,7 @@ app.use(function(req, res, next) {
 
 //production development...
 // error handler
+/*
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
@@ -62,10 +63,11 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+*/
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
-   console.log('https://justagithubdrop-ryanlb22.c9users.io:8080/')
+  console.log('https://localhost:8080/')
 });
 
 module.exports = app;
