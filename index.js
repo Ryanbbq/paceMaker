@@ -8,7 +8,6 @@ var bodyParser = require('body-parser');
 //check the routes folder
 var routes = require('./routes/index');
 var features = require('./routes/features');
-var googleVision = require('./routes/googleVision');
 
 
 //create app start express
@@ -34,10 +33,6 @@ app.set('port', (process.env.PORT || 5000));
 // use this format if you want to add a page
 app.use('/', routes);
 app.use('/features', features);
-app.use('/googleVision', googleVision);
-
-
-
 
 
 

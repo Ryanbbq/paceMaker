@@ -1,16 +1,28 @@
 <html>
   <head>
     <title>
-    Recipe Vision
+    <%= title %>
     </title>
   <% include templates/includes.ejs %>
 
   </head>
-  
+  <style>
+  .boxed{
+        width:30em;
+        height:10em;
+        padding:20px;
+        border:2px solid black;
+        -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+        box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+        }
+        </style>
   <body>
 <!-- Inclue header template -->
       <% include templates/header.ejs %>
-        
+      <div class="boxed">
+  This text is enclosed in a box.
+</div>
 
   
     

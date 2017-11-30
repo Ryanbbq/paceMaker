@@ -14,11 +14,77 @@
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <title><%= title %></title>
+        
     </head>
     <body>
        
         <% include templates/header.ejs %>
+         <% include templates/edamamAPI.ejs %>
+         <% include templates/googleVision.ejs %>
         
-        Hello World
+
+  <form id="fileform" action="">
+    <select name="type">
+      <option value="LANDMARK_DETECTION">LANDMARK_DETECTION</option>
+      <option value="TYPE_UNSPECIFIED">TYPE_UNSPECIFIED</option>
+      <option value="FACE_DETECTION">FACE_DETECTION</option>
+      <option value="LOGO_DETECTION">LOGO_DETECTION</option>
+      <option value="LABEL_DETECTION">LABEL_DETECTION</option>
+      <option value="TEXT_DETECTION">TEXT_DETECTION</option>
+      <option value="SAFE_SEARCH_DETECTION">SAFE_SEARCH_DETECTION</option>
+      <option value="IMAGE_PROPERTIES">IMAGE_PROPERTIES</option>
+    </select><br />
+    <input type="file" name="fileField" id="fileChoose"><br /><br />
+    <input type="submit" name="submit" value="Submit">
+  </form>
+  
+  <style>
+  #fileChoose{
+        border: 2px solid #dce4ec;
+    display: block;
+    padding: 1em;
+    cursor: pointer;
+    color: red;
+    margin-top: .2em;
+  }
+  </style>
+
+<span id="googleSpan"></span>
+
+
+
+    <!-- Buttons for recipeSearch() function -->
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="search for a type of food..." name="search" id="searchValue" >
+          <div class="input-group-btn">
+              <button class="btn btn-default" type="submit" onclick="recipeSearch()" id="button1">
+              Search
+              </button>
+          </div>
+        </div>
+        
+    
+    <!-- Tomato Loading Icon -->
+    <div id="wait" style="display:none;width:69px;height:89px;position:absolute;top:50%;left:50%;padding:2px;"><img src="https://i.imgur.com/aqcDItL.gif" alt="My_Logo"></div>
+      
+       <!-- Recipe Display see edamamAPI.ejs for jquery data -->
+      <center>
+        <span id="oneSpan"></span>
+      </center>
+
+
+    </body>  
+    <script>
+         // allows the user to press 'enter' to search
+        document.getElementById("searchValue")
+            .addEventListener("keyup", function(event) {
+            event.preventDefault();
+            if (event.keyCode == 13) {
+                document.getElementById("button1").click();
+            }
+        });
+    </script>
+          
+
     </body>
 </html>

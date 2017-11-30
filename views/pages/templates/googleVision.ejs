@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Cloud Vision Demo</title>
-  <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-</head>
-<body>
-
   <script>
-  
-  
   window.apiKey = 'AIzaSyAgbUpBiD8-oj_UDzRg2LkkEa-gEWTguWw';
   'use strict';
 console.log("In main");
@@ -83,34 +71,25 @@ function displayJSON (data) {
     
   
   for(var i = 0;i<5;i++){
-                 
-              $("#oneSpan").append("<h1>" +   data["responses"][0]["labelAnnotations"][i]["description"] +"</h1>"+
-                                    "<br><h2>" + data["responses"][0]["labelAnnotations"][i]["score"] +"</h1>");
-                };
-  
-  
+           // $("#header1").append(data["responses"][0]["labelAnnotations"][i]["description"]);
+            $("#googleSpan").append("<div id='gbox'><h4>" + data["responses"][0]["labelAnnotations"][i]["description"]+ "</h4>"+
+                                    "<h4>" + data["responses"][0]["labelAnnotations"][i]["score"] +"</h4>" +
+                                    "<input type='checkbox'></div>" );
+  };
   
   var evt = new Event('results-displayed');
   evt.results = contents;
   document.dispatchEvent(evt);
 }
-  </script>
-  <form id="fileform" action="">
-    <select name="type">
-      <option value="LANDMARK_DETECTION">LANDMARK_DETECTION</option>
-      <option value="TYPE_UNSPECIFIED">TYPE_UNSPECIFIED</option>
-      <option value="FACE_DETECTION">FACE_DETECTION</option>
-      <option value="LOGO_DETECTION">LOGO_DETECTION</option>
-      <option value="LABEL_DETECTION">LABEL_DETECTION</option>
-      <option value="TEXT_DETECTION">TEXT_DETECTION</option>
-      <option value="SAFE_SEARCH_DETECTION">SAFE_SEARCH_DETECTION</option>
-      <option value="IMAGE_PROPERTIES">IMAGE_PROPERTIES</option>
-    </select><br />
-    <input type="file" name="fileField"><br /><br />
-    <input type="submit" name="submit" value="Submit">
-  </form>
-
-  <code style="white-space:pre" id="results"></code>
-  <div id="oneSpan"></div>
-</body>
-</html>
+</script>
+<style>
+    #gBox{
+    border: 2px solid black;
+    text-align: center;
+    padding: 20px;
+    width: 10em;
+    float: left;
+    margin-left: 2em;
+    height: 10em;
+    }
+</style>
