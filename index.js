@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 //check the routes folder
 var routes = require('./routes/index');
 var features = require('./routes/features');
+var recipebook = require('./routes/recipebook');
 
 
 //create app start express
@@ -24,7 +25,14 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname + 'public')));
+
+//console.log("static path: " + (path.join(__dirname + '/public')));
+
+app.use(express.static(path.join(__dirname + '/public')));
+
+//console.log("request is not handled with a static resource ");
+
+
 app.set('port', (process.env.PORT || 5000));
 
 
@@ -33,7 +41,7 @@ app.set('port', (process.env.PORT || 5000));
 // use this format if you want to add a page
 app.use('/', routes);
 app.use('/features', features);
-
+app.use('/recipebook',recipebook);
 
 
 //app.use('/about', about); 

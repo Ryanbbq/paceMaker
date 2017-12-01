@@ -2,9 +2,9 @@ var express = require('express');
 var router = express.Router();
 
 
-/* Get chat App Page */
+/* Get Home Page */
 router.get('/', function(req,res,next){
-    res.render('chatApp.ejs',{title: 'Recipe Vision'});
+    res.render('recipebook',{title: 'Recipe Book'});
 });
 
 module.exports = router;
