@@ -9,6 +9,9 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var features = require('./routes/features');
 var recipebook = require('./routes/recipebook');
+var userRegister = require('./routes/userRegister');
+var userLogin = require('./routes/userLogin');
+var updateUser = require('./routes/updateUser');
 
 
 //create app start express
@@ -32,7 +35,6 @@ app.use(express.static(path.join(__dirname + '/public')));
 
 //console.log("request is not handled with a static resource ");
 
-
 app.set('port', (8081));
 
 //process.env.PORT || 5000
@@ -40,7 +42,7 @@ app.set('port', (8081));
 var mysql = require("mysql");
 var con = mysql.createConnection({
   host: "localhost",
-  user: "ryanlb22",
+  user: "brilit96",
   password: "",
   database: "c9"
 });
@@ -59,7 +61,9 @@ con.connect(function(err){
 app.use('/', routes);
 app.use('/features', features);
 app.use('/recipebook',recipebook);
-
+app.use('/updateUser',updateUser);
+app.use('/userRegister',userRegister);
+app.use('/userLogin',userLogin);
 
 //app.use('/about', about); 
 
