@@ -8,9 +8,27 @@
 <body>
     <!-- Include header template -->
     <% include templates/header.ejs %>
+    <% include templates/validation.ejs %>
+    <form method="POST" onsubmit="return validateForm()">
+        <legend>Sign Up</legend>
+        <fieldset style="text-align: left; padding-left: 45%;">
+            <input type="text" name="firstName" id="firstName" placeholder="First Name"><br>
+            <input type="text" name="lastName" id="lastName" placeholder="Last Name"><br><br>
+            <input type="text" name="username" id="username" placeholder="Desired Username" onchange="checkUsername()"><span id="available"></span><br>
+            <input type="email" name="email" id="email" placeholder="Email"><br>
+            <input type="password" name="password" id="password" onchange="passwordMatch()" placeholder="Password"><br>
+            <input type="password" name="confirmPass" id="confirmPass" onchange="passwordMatch()" placeholder="Confirm Password"><span id="pwMatchError"></span><br>
+            <button type="submit" name="signupForm">Sign Up</button><br>
+            <span id="incomplete"></span>
+        </fieldset>
+    </form>
     
-    <!-- Include footer template -->
-    <% include templates/footer.ejs %>
+    
 </body>
+
+<footer>
+        <!-- Include footer template -->
+    <% include templates/footer.ejs %>
+</footer>
 
 </html>

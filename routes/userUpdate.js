@@ -4,7 +4,7 @@ var router = express.Router();
 
 /* Get Home Page */
 router.get('/', function(req,res,next){
-    res.render('updateUser',{title: 'Update User'});
+    res.render('userUpdate',{title: 'Update User'});
 });
 
 module.exports = router;

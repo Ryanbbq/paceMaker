@@ -11,7 +11,7 @@ var features = require('./routes/features');
 var recipebook = require('./routes/recipebook');
 var userRegister = require('./routes/userRegister');
 var userLogin = require('./routes/userLogin');
-var updateUser = require('./routes/updateUser');
+var userUpdate = require('./routes/userUpdate');
 
 
 //create app start express
@@ -46,6 +46,7 @@ var con = mysql.createConnection({
   password: "",
   database: "c9"
 });
+
 con.connect(function(err){
   if(err){
     console.log('Error connecting to Db');
@@ -61,7 +62,7 @@ con.connect(function(err){
 app.use('/', routes);
 app.use('/features', features);
 app.use('/recipebook',recipebook);
-app.use('/updateUser',updateUser);
+app.use('/userUpdate',userUpdate);
 app.use('/userRegister',userRegister);
 app.use('/userLogin',userLogin);
 
