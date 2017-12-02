@@ -9,7 +9,7 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var features = require('./routes/features');
 var googleVision = require('./routes/googleVision');
-
+var video= require('./routes/video');
 
 //create app start express
 var app = express();
@@ -35,7 +35,7 @@ app.set('port', (process.env.PORT || 5000));
 app.use('/', routes);
 app.use('/features', features);
 app.use('/googleVision', googleVision);
-
+app.use('/video', video);
 
 
 

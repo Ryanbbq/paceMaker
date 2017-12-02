@@ -1,0 +1,44 @@
+<script>
+    //Recipe Search Function
+    function youtubeSearch(){
+        console.log("YOUTUBE API");
+            
+        //Clears the div's contents after each new search
+        $("#label").html("");
+        $("#image").html("");
+        $("#videos").html("");
+
+        //AJAX request for Youtube API
+        $.ajax({
+            dataType: 'json',
+	        type: 'get',
+	        url: 'https://www.googleapis.com/youtube/v3/search',
+	        data: ({
+	            key: 'AIzaSyCz1uT-R_zGecbkn2CXr-qc8s3al1thluA',
+		        q: $('#searchValue').val() + ' recipes',
+		        part: 'snippet',
+		        videoembeddable: 'any'
+	         }),
+        
+            success: function(data,status) {
+                console.log(data);
+                console.log("hello");
+              
+                for(var i = 0; i < 3; i++) {
+                    //console.log(data["items"][i]);
+                    $("#videos").append("<br>" + 
+                    "<iframe width='420' height='315' src='https://www.youtube.com/embed/" + data["items"][i]["id"]["videoId"] + "'></iframe>")
+                }
+            },
+        
+            complete: function(data,status) { 
+                console.log(status);
+            }
+        });//AJAX
+    } //End of youtubeSearch() function.
+</script>
+<style>
+    #imges{
+        border:4px solid black;
+    }
+</style>
