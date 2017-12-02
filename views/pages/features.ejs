@@ -1,16 +1,14 @@
 <html>
     <head>
-         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-        
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script rel="javascript" type="text/javascript" href="js/jquery-1.11.3.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
         <script language="javascript" type ="text/javascript"></script>
-
-        
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <title><%= title %></title>
@@ -18,24 +16,24 @@
     </head>
     <body>
        
-        <% include templates/header.ejs %>
-         <% include templates/edamamAPI.ejs %>
-         <% include templates/googleVision.ejs %>
+    <% include templates/header.ejs %>
+    <% include templates/edamamAPI.ejs %>
+    <% include templates/googleVision.ejs %>
 
-  <form id="fileform" action="">
-    <select name="type">
-      <option value="LANDMARK_DETECTION">LANDMARK_DETECTION</option>
-      <option value="TYPE_UNSPECIFIED">TYPE_UNSPECIFIED</option>
-      <option value="FACE_DETECTION">FACE_DETECTION</option>
-      <option value="LOGO_DETECTION">LOGO_DETECTION</option>
-      <option value="LABEL_DETECTION">LABEL_DETECTION</option>
-      <option value="TEXT_DETECTION">TEXT_DETECTION</option>
-      <option value="SAFE_SEARCH_DETECTION">SAFE_SEARCH_DETECTION</option>
-      <option value="IMAGE_PROPERTIES">IMAGE_PROPERTIES</option>
-    </select><br />
+    <form id="fileform" action="">
+        <select name="type">
+        <option value="LANDMARK_DETECTION">LANDMARK_DETECTION</option>
+        <option value="TYPE_UNSPECIFIED">TYPE_UNSPECIFIED</option>
+        <option value="FACE_DETECTION">FACE_DETECTION</option>
+        <option value="LOGO_DETECTION">LOGO_DETECTION</option>
+        <option value="LABEL_DETECTION">LABEL_DETECTION</option>
+        <option value="TEXT_DETECTION">TEXT_DETECTION</option>
+        <option value="SAFE_SEARCH_DETECTION">SAFE_SEARCH_DETECTION</option>
+        <option value="IMAGE_PROPERTIES">IMAGE_PROPERTIES</option>
+        </select><br />
     <input type="file" name="fileField" id="fileChoose"><br /><br />
     <input type="submit" name="submit" value="Submit">
-  </form>
+    </form>
   
   <style>
   #fileChoose{
@@ -65,7 +63,6 @@
     
     <!-- Tomato Loading Icon -->
     <div id="wait" style="display:none;width:69px;height:89px;position:absolute;top:50%;left:50%;padding:2px;"><img src="images/fruits-tomato.gif" alt="My_Logo"></div>
-      
        <!-- Recipe Display see edamamAPI.ejs for jquery data -->
       <center>
         <span id="oneSpan"></span>
