@@ -4,8 +4,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-//file paths for routing...
-//check the routes folder
+// file paths for routing...
+// check the routes folder
 var routes = require('./routes/index');
 var features = require('./routes/features');
 var recipebook = require('./routes/recipebook');
@@ -14,7 +14,7 @@ var userLogin = require('./routes/userLogin');
 var userUpdate = require('./routes/userUpdate');
 
 
-//create app start express
+// create app start express
 var app = express();
 
 
@@ -29,15 +29,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-//console.log("static path: " + (path.join(__dirname + '/public')));
+// console.log("static path: " + (path.join(__dirname + '/public')));
 
 app.use(express.static(path.join(__dirname + '/public')));
 
-//console.log("request is not handled with a static resource ");
+// console.log("request is not handled with a static resource ");
 
 app.set('port', (8081));
 
-//process.env.PORT || 5000
+// process.env.PORT || 5000
 // DataBase 
 var mysql = require("mysql");
 var con = mysql.createConnection({
@@ -47,15 +47,14 @@ var con = mysql.createConnection({
   database: "c9"
 });
 
-con.connect(function(err){
-  if(err){
-    console.log('Error connecting to Db');
-    return;
-  }
-  console.log('Connection established');
+con.connect(function(err) {
+  if (err) throw err;
+  con.query("SELECT * FROM users", function (err, result, fields) {
+    if (err) throw err;
+    console.log(result);
+    //console.log(result.id);
+  });
 });
-
-
 
 // page routing dependencies
 // use this format if you want to add a page
@@ -66,7 +65,7 @@ app.use('/userUpdate',userUpdate);
 app.use('/userRegister',userRegister);
 app.use('/userLogin',userLogin);
 
-//app.use('/about', about); 
+// app.use('/about', about); 
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -76,7 +75,7 @@ app.use(function(req, res, next) {
 });
 
 
-//production development...
+// production development...
 // error handler
 /*
 app.use(function(err, req, res, next) {
