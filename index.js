@@ -37,22 +37,8 @@ app.set('port', (8081));
 
 // process.env.PORT || 5000
 // DataBase 
-var mysql = require("mysql");
-var con = mysql.createConnection({
-  host: "localhost",
-  user: "ryanlb22",
-  password: "",
-  database: "c9"
-});
 
-con.connect(function(err) {
-  if (err) throw err;
-  con.query("SELECT * FROM users", function (err, result, fields) {
-    if (err) throw err;
-    console.log(result);
-    //console.log(result.id);
-  });
-});
+
 
 // page routing dependencies
 // use this format if you want to add a page
