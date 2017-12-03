@@ -55,7 +55,7 @@
                                   "<img id='imges' src='" +data["hits"][i]["recipe"]["image"] + "'>"  +
                                 
                                 "<form action='/action_page.php' method='get'>"
-                                +"  <input class='recipeCheckBox' type='checkbox' id='testingVal' onclick='testFunct(\""+ data["hits"][i]["recipe"]["label"]+ "\")' >"+"Add to recipe book" + 
+                                +"  <input class='recipeCheckBox' type='checkbox' id='testingVal' onclick='testFunct(\""+ data["hits"][i]["recipe"]["uri"]+ "\")' >"+"Add to recipe book" + 
                             
                                 "</form>"+
                                   
@@ -77,8 +77,31 @@
 
         // GET THE VALUE OF WHAT WE WANT TO ADD TO OUR RECIPE BOOK
         alert(recipeValue);
-      
+      var express = require('express');
+var router = express.Router();
+
+        var mysql = require("mysql");
+        var con = mysql.createConnection({
+          host: "localhost",
+          user: "ryanlb22",
+          password: "",
+          database: "c9"
+        });
+        
+        con.connect(function(err) {
+        if (err) throw err;
+        console.log("Connected!");
+        var sql = "INSERT INTO recipebook (recipeURI) VALUES ("+recipeValue+")";
+        con.query(sql, function (err, result) {
+          if (err) throw err;
+          console.log("1 record inserted");
+        });
+      });
+              console.log("end");
+              module.exports = router;
     }
+    
+
         
 </script>
 <style>

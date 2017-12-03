@@ -12,6 +12,7 @@ var recipebook = require('./routes/recipebook');
 var userRegister = require('./routes/userRegister');
 var userLogin = require('./routes/userLogin');
 var userUpdate = require('./routes/userUpdate');
+var video = require('./routes/video');
 
 
 // create app start express
@@ -38,29 +39,13 @@ app.use(express.static(path.join(__dirname + '/public')));
 app.set('port', (8081));
 
 // process.env.PORT || 5000
-// DataBase 
-var mysql = require("mysql");
-var con = mysql.createConnection({
-  host: "localhost",
-  user: "brilit96",
-  password: "",
-  database: "c9"
-});
-
-con.connect(function(err) {
-  if (err) throw err;
-  con.query("SELECT * FROM users", function (err, result, fields) {
-    if (err) throw err;
-    console.log(result);
-    //console.log(result.id);
-  });
-});
 
 // page routing dependencies
 // use this format if you want to add a page
 app.use('/', routes);
 app.use('/features', features);
 app.use('/recipebook',recipebook);
+app.use('/video',video);
 app.use('/userUpdate',userUpdate);
 app.use('/userRegister',userRegister);
 app.use('/userLogin',userLogin);
