@@ -24,10 +24,9 @@ con.connect(function(err) {
   });
 });
 
-
-/* Get Features Page */
+/* Get Home Page */
 router.get('/', function(req,res,next){
-    res.render('features',{title: 'Recipe Search'});
+    res.render('recipebook',{title: 'Recipe Book'});
 });
 
 module.exports = router;

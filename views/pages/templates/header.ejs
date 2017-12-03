@@ -1,17 +1,11 @@
      
 <style>
     #divOne{
-    margin: auto;
-    width: 50%;
-    border: 5px solid black;
-    padding: 30px;
-    background-color:white;
-    border-radius: 25px;
-    font-style: oblique;
-    background-color: white;
+    float:left;
+    text-size:10em;
     }
     #jumbo{
-    background-image: url("https://i.imgur.com/JcsaUOC.png");
+    background-image: url("images/recipeVisionBorder.png");
     background-color:white;
     }
     
@@ -40,9 +34,6 @@
      font-size:1.5em;
     
 }
-.navbar navbar-toggleable-md{
-    
-}
      </style>
 <div class="jumbotron text-center" id="jumbo">
   <h1 id="title1">Recipe Vision</h1>
@@ -50,6 +41,7 @@
 <div id="fb-root"></div>
 <script>
 //process.env(facebookID);
+/*
      window.fbAsyncInit = function() {
       FB.init({
         appId      : '168050303776214',
@@ -81,15 +73,16 @@
             href: 'https://pacemaker438.herokuapp.com/',
           }, function(response){});
         }
-  
+  */
 </script>
+<title>Recipe Vision</title>
 <div class="container">
   <hr>
     <nav class="navbar navbar-toggleable-md">
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand" href="#">Recipe Vision</a>
+      <a class="navbar-brand" href="#"><%= title %></a>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item active">
@@ -98,10 +91,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/features">Features</a>
+            <a class="nav-link" href="/features">Try it now!</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Recipes</a>
+            <a class="nav-link" href="/recipebook">Recipe Book</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
