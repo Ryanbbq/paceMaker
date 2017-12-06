@@ -7,7 +7,7 @@ var username ="";
 var mysql = require("mysql");
 var con = mysql.createConnection({
   host: "localhost",
-  user: "ryanlb22",
+  user: "kristineyvonne",
   password: "",
   database: "c9"
 });
@@ -26,7 +26,11 @@ con.connect(function(err) {
 
 /* Get Recipe Book Page */
 router.get('/', function(req,res,next){
+<<<<<<< HEAD
     res.render('recipebook',{title: 'Recipe Book',username:username});
+=======
+    res.render('recipebook',{title: 'Recipe Book', username:username});
+>>>>>>> origin/kristine_home
 });
 
 module.exports = router;

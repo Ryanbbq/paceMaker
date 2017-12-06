@@ -1,3 +1,5 @@
+<% include youtubeAPI.ejs %> 
+
 
 <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 <script>
@@ -39,13 +41,13 @@
               console.log(data);
               console.log(data.length);
               
-              
               // FOR LOOP TO DISPLAY JSON OBJECTS
               for(var i = 0 ; i <9;i++){
               console.log(data["hits"][i]["recipe"]["label"]);
               $("#recipeLabel").html("");
             
               // APPEND OBJECTS TO A DIV WITH THE ID CALLED 'ONESPAN'
+              
               $("#oneSpan").append("<div class='container' id='recipeBox'>" +
                                   "<h4><a href='" + data["hits"][i]["recipe"]["url"] + "'  target='_blank'>" + data["hits"][i]["recipe"]["label"] + "</a></h4>" +
                                   // ROUND CALORIES BECAUSE ITS A DECIMAL
@@ -62,6 +64,7 @@
                                   
                                   "</div>");
               }
+              youtubeSearch();
             },
         
             complete: function(data,status) { 
@@ -98,7 +101,6 @@
            $('#results').html(data); 
         });
     }
-
 
 </script>
 

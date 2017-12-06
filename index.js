@@ -41,6 +41,10 @@ app.use(express.static(path.join(__dirname + '/public')));
 app.set('port', (8082));
 // or set the port number to this if its not working process.env.PORT || 5000
 
+// page routing dependencies
+// use this format if you want to add a page
+app.use('/', routes);
+app.use('/features', features);
 
 // start connection for mysql database
 var mysql = require("mysql");
