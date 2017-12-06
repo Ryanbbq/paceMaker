@@ -1,5 +1,6 @@
-<script>
 
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
 //Recipe Search Function
     function recipeSearch(){
         //alert("Clicked!");
@@ -42,7 +43,7 @@
               // FOR LOOP TO DISPLAY JSON OBJECTS
               for(var i = 0 ; i <9;i++){
               console.log(data["hits"][i]["recipe"]["label"]);
-        $("#recipeLabel").html("");
+              $("#recipeLabel").html("");
             
               // APPEND OBJECTS TO A DIV WITH THE ID CALLED 'ONESPAN'
               $("#oneSpan").append("<div class='container' id='recipeBox'>" +
@@ -51,11 +52,11 @@
                                   "<h6>Calories per recipe:  " +  Math.round(data["hits"][i]["recipe"]["calories"])+"</h6>" +
                                   "<h6>Diet Labels: " + data["hits"][i]["recipe"]["dietLabels"] + "</h6>" + 
                                   "<h6>Source: " + data["hits"][i]["recipe"]["source"] + "</h6>" + 
-                             
-                                  "<img id='imges' src='" +data["hits"][i]["recipe"]["image"] + "'>"  +
-                                
-                                "<form action='/action_page.php' method='get'>"
-                                +"  <input class='recipeCheckBox' type='checkbox' id='testingVal' onclick='testFunct(\""+ data["hits"][i]["recipe"]["uri"]+ "\")' >"+"Add to recipe book" + 
+                                  
+                                  "<img id='imges' src='" +data["hits"][i]["recipe"]["image"] + "'>"  
+
+                               + "<form action='routes/features.js' method='post'>"
+                                +"  <input class='recipeCheckBox' type='checkbox' id='testingVal' onclick='getRecipeURI(\""+ data["hits"][i]["recipe"]["uri"]+ "\")' >"+"Add to recipe book" + 
                             
                                 "</form>"+
                                   
@@ -65,50 +66,59 @@
         
             complete: function(data,status) { 
                 // SEE IF WE GET AN ERROR
-                     $("#wait").css("display", "none");
-              console.log(status);
+            $("#wait").css("display", "none");
+             console.log(status);
             }
         
 		});//AJAX
 
     } //End of recipeSearch() function.
     
-    function testFunct(recipeValue){
-
-        // GET THE VALUE OF WHAT WE WANT TO ADD TO OUR RECIPE BOOK
-        alert(recipeValue);
-      var express = require('express');
-var router = express.Router();
-
-        var mysql = require("mysql");
-        var con = mysql.createConnection({
-          host: "localhost",
-          user: "ryanlb22",
-          password: "",
-          database: "c9"
-        });
-        
-        con.connect(function(err) {
-        if (err) throw err;
-        console.log("Connected!");
-        var sql = "INSERT INTO recipebook (recipeURI) VALUES ("+recipeValue+")";
-        con.query(sql, function (err, result) {
-          if (err) throw err;
-          console.log("1 record inserted");
-        });
-      });
-              console.log("end");
-              module.exports = router;
+    // getRecipeURI(recipeValue)
+    function getRecipeURI(recipeValue){
+      
+      //  alert(recipeValue);
+   
+        // get recipe URI send it to index.js(server)
+      var parameters = { value: recipeValue };
+       $.get( '/recipeURI',parameters, function(data) {
+     //  $('#results').html(data);
+     });
     }
     
+    
+    
+    
+    
+    // GET RECIPE LABEL ... IN PROGRESS
+    function getRecipeLabel(recipeLabel){
+        alert(recipeLabel);
+        var parametes = { value:recipeLabel };
+        $.get('/recipeLabel',parameters,function(data){
+           $('#results').html(data); 
+        });
+    }
 
-        
+
 </script>
+
+
 <style>
     #imges{
-    border:4px solid black;
-    width:13em;
-    height:13em;
+        border:4px solid green;
+        width:13em;
+        height:13em;
+        opacity:1;
+        display:block;
+        transition:.5s ease;
+        backface-visibility:hidden;
+    }
+
+    .text {
+        background-color: #4CAF50;
+        color: white;
+        font-size: 16px;
+        padding: 16px 32px;
     }
     #recipeBox{
         margin:0 auto;
@@ -120,7 +130,7 @@ var router = express.Router();
         width:20em;
         height:25em;
         overflow:auto;
-        border:2px solid black;
+        border:2px solid green;
         -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
         -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
         box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);

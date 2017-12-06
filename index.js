@@ -3,13 +3,22 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var http = require('http').Server(express);
+var io = require('socket.io')(http);
+var https = require('https');
+
+
+var googleVisionKEY = process.env.googleVisionKEY;
+
+
 
 // file paths for routing...
 // check the routes folder
+// create format similar to this make sure to check below for another dependency
 var routes = require('./routes/index');
 var features = require('./routes/features');
 var recipebook = require('./routes/recipebook');
-
+var vision = require('./routes/vision');
 
 // create app start express
 var app = express();
@@ -17,8 +26,8 @@ var app = express();
 
 // views is directory for all template files
 app.set('views', __dirname + '/views/pages');
-//make sure files are 'ejs'
 
+//make sure files are 'ejs'
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
@@ -26,18 +35,50 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// console.log("static path: " + (path.join(__dirname + '/public')));
 
 app.use(express.static(path.join(__dirname + '/public')));
 
-// console.log("request is not handled with a static resource ");
+app.set('port', (8082));
+// or set the port number to this if its not working process.env.PORT || 5000
 
 
-app.set('port', (8081));
+// start connection for mysql database
+var mysql = require("mysql");
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "ryanlb22",
+  password: "",
+  database: "c9"
+});
 
-// process.env.PORT || 5000
-// DataBase 
 
+ // get recipe uri
+app.get('/recipeURI', function(req, res){
+
+ var RECIPEVALUE = req.query.value;
+ console.log(RECIPEVALUE);
+ 
+ var sql = "INSERT INTO  `recipebook` (  `recipeURI` ) VALUES ('"+RECIPEVALUE+"')";
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("1 record inserted");
+  });
+
+});
+
+ // get recipe label
+app.get('/recipeLabel', function(req, res){
+
+ var RECIPELABEL = req.query.value;
+ console.log(RECIPELABEL);
+ 
+ var sql = "INSERT INTO  `recipebook` (  `recipeURI` ) VALUES ('"+RECIPELABEL+"')";
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("1 record inserted");
+  });
+
+});
 
 
 // page routing dependencies
@@ -45,9 +86,8 @@ app.set('port', (8081));
 app.use('/', routes);
 app.use('/features', features);
 app.use('/recipebook',recipebook);
+app.use('/vision',vision);
 
-
-// app.use('/about', about); 
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -57,23 +97,9 @@ app.use(function(req, res, next) {
 });
 
 
-// production development...
-// error handler
-/*
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
-*/
-
 app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
-  console.log('https://localhost:' + app.get('port')+'/');
+  console.log('Recipe Vision Server 1 is running on port:', app.get('port'));
+  console.log('Please visit the server on: https://localhost:' + app.get('port')+'/');
 });
 
 module.exports = app;

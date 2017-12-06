@@ -1,4 +1,5 @@
-     
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 <style>
     #divOne{
     float:left;
@@ -7,6 +8,11 @@
     #jumbo{
     background-image: url("images/recipeVisionBorder.png");
     background-color:white;
+    border-top:0;
+    border-left:0;
+    border-right:0;
+    border-bottom:.2em solid #59ea1c;
+ box-shadow: 0px 0px 8px 2px #000000
     }
     
     #title1{
@@ -14,7 +20,7 @@
     font-size:4em;
     font-weight:bold;
     color:white;
-    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+    text-shadow: 1px 1px 2px black, 0 0 25px green, 0 0 5px darkgreen;
     
     }
     #navBar{
@@ -23,16 +29,52 @@
     font-weight:bold;
     color:white;
     text-shadow: 1px 1px 2px white, 0 0 25px black, 0 0 5px black;
+    
+      
     }
 .nav-link{
     color:black;
     font-size:1.5em;
+    float:left;
+    border:1px solid green;
+    margin-left:.25em;
+    margin-right:.25em;
+    padding:1px;
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 2px #000000;
+    
   
 }
+.nav-link:hover {background-color: #3e8e41}
+
+.nav-link:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
 .navbar-brand{
     color:black;
-     font-size:1.5em;
-    
+    font-size:2em;
+    padding:.2em;
+     border: 10px solid transparent;
+    -webkit-border-image: url(images/border.png) 50% round; /* Safari 3.1-5 */
+    -o-border-image: url(images/border.png) 50% round; /* Opera 11-12.1 */
+    border-image: url(images/border.png) 50% round;
+}
+a:not([href]):not([tabindex]){
+  color:black;
+
 }
      </style>
 <div class="jumbotron text-center" id="jumbo">
@@ -40,6 +82,8 @@
 </div>
 <div id="fb-root"></div>
 <script>
+
+//facebook API not yet working
 //process.env(facebookID);
 /*
      window.fbAsyncInit = function() {
@@ -77,12 +121,12 @@
 </script>
 <title>Recipe Vision</title>
 <div class="container">
-  <hr>
+  <hr >
     <nav class="navbar navbar-toggleable-md">
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"><i class="material-icons" style="font-size:2em">all_inclusive</i></span>
       </button>
-      <a class="navbar-brand" href="#"><%= title %></a>
+      <a class="navbar-brand"><%= title %></a>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item active">
@@ -94,22 +138,13 @@
             <a class="nav-link" href="/features">Try it now!</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="/vision">Image Search</a>
+          </li>                
+
+          <li class="nav-item">
             <a class="nav-link" href="/recipebook">Recipe Book</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Facebook
-                </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">
-                <div class="fb-login-button" data-max-rows="1" data-size="small" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
-              </a>
-              <a class="dropdown-item" href="#">
-                <div id="shareBtn" class="btn btn-success clearfix" data-size="small">Share</div>
-              </a>
-              <a class="dropdown-item" href="#"></a>
-            </div>
-          </li>
+          </li> 
+       
         </ul>
       </div>
     </nav>

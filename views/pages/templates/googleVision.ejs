@@ -1,8 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cloud Vision Demo</title>
+  <link rel="stylesheet" type="text/css" href="stylesheets/main.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+</head>
+<body>
   <script>
   
   
-window.apiKey = 'AIzaSyAgbUpBiD8-oj_UDzRg2LkkEa-gEWTguWw';
-'use strict';
+  var key = "<%= key %>";
+  window.apiKey=key;
+  'use strict';
 console.log("In main");
 var CV_URL = 'https://vision.googleapis.com/v1/images:annotate?key=' + window.apiKey;
 
@@ -69,29 +79,19 @@ function displayJSON (data) {
   var contents = JSON.stringify(data, null, 4);
   //$('#results').text(contents);
   console.log(data);
- $("#googleSpan").html("");
+  
     
   
   for(var i = 0;i<5;i++){
-           // $("#header1").append(data["responses"][0]["labelAnnotations"][i]["description"]);
-            $("#googleSpan").append("<div id='gbox'><h4>" + data["responses"][0]["labelAnnotations"][i]["description"]+ "</h4>"+
-                                    "<h4>" + data["responses"][0]["labelAnnotations"][i]["score"] +"</h4>" +
-                                    "<input type='checkbox'></div>" );
-  };
+                 
+              $("#googleSpan").append("<h1>" +   data["responses"][0]["labelAnnotations"][i]["description"] +"</h1>"+ 
+                                        "<br><h2>" + data["responses"][0]["labelAnnotations"][i]["score"] +"</h2>");
+                };
+  
+  
   
   var evt = new Event('results-displayed');
   evt.results = contents;
   document.dispatchEvent(evt);
 }
-</script>
-<style>
-    #gBox{
-    border: 2px solid black;
-    text-align: center;
-    padding: 20px;
-    width: 10em;
-    float: left;
-    margin-left: 2em;
-    height: 10em;
-    }
-</style>
+  </script>

@@ -19,14 +19,14 @@ con.connect(function(err) {
     console.log(result[0].username);
     
     username = result[0].username;
-    console.log(username);
+   // console.log(username);
     //console.log(result.id);
   });
 });
 
-/* Get Home Page */
+/* Get Recipe Book Page */
 router.get('/', function(req,res,next){
-    res.render('recipebook',{title: 'Recipe Book'});
+    res.render('recipebook',{title: 'Recipe Book',username:username});
 });
 
 module.exports = router;

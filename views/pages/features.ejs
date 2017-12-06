@@ -11,45 +11,31 @@
         <script language="javascript" type ="text/javascript"></script>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <title><%= title %></title>
-        
+     
     </head>
     <body>
        
     <% include templates/header.ejs %>
     <% include templates/edamamAPI.ejs %>
-    <% include templates/googleVision.ejs %>
-
-    <form id="fileform" action="">
-        <select name="type">
-        <option value="LANDMARK_DETECTION">LANDMARK_DETECTION</option>
-        <option value="TYPE_UNSPECIFIED">TYPE_UNSPECIFIED</option>
-        <option value="FACE_DETECTION">FACE_DETECTION</option>
-        <option value="LOGO_DETECTION">LOGO_DETECTION</option>
-        <option value="LABEL_DETECTION">LABEL_DETECTION</option>
-        <option value="TEXT_DETECTION">TEXT_DETECTION</option>
-        <option value="SAFE_SEARCH_DETECTION">SAFE_SEARCH_DETECTION</option>
-        <option value="IMAGE_PROPERTIES">IMAGE_PROPERTIES</option>
-        </select><br />
-    <input type="file" name="fileField" id="fileChoose"><br /><br />
-    <input type="submit" name="submit" value="Submit">
-    </form>
   
-  <style>
-  #fileChoose{
-    border: 2px solid #dce4ec;
-    display: block;
-    padding: 1em;
-    cursor: pointer;
-    color: red;
-    margin-top: .2em;
-  }
-  </style>
-
-<span id="googleSpan"></span>
 
 
+<div id="box">
+    
+    <!-- Tomato Loading Icon -->
+    <div id="wait" style="display:none;width:69px;height:89px;position:absolute;top:50%;left:50%;padding:2px;"><img src="images/fruits-tomato.gif" alt="My_Logo"></div>
 
+    <style>
+        #box{
+            width:25px;
+            height:25px;
+        }
+        .input-group{
+            width:90%;
+            color:red;
+        }
+    </style>
+</div>
     <!-- Buttons for recipeSearch() function -->
         <div class="input-group">
           <input type="text" class="form-control" placeholder="search for a type of food..." name="search" id="searchValue" >
@@ -61,14 +47,15 @@
         </div>
         
     
-    <!-- Tomato Loading Icon -->
-    <div id="wait" style="display:none;width:69px;height:89px;position:absolute;top:50%;left:50%;padding:2px;"><img src="images/fruits-tomato.gif" alt="My_Logo"></div>
        <!-- Recipe Display see edamamAPI.ejs for jquery data -->
       <center>
         <span id="oneSpan"></span>
+        <span id="youtubeSpan"></span>
       </center>
+      
+     
 
-
+<div id="results"></div>
     </body>  
     <script>
          // allows the user to press 'enter' to search
