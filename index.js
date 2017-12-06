@@ -8,7 +8,6 @@ var bodyParser = require('body-parser');
 // check the routes folder
 var routes = require('./routes/index');
 var features = require('./routes/features');
-var video= require('./routes/video');
 var recipebook = require('./routes/recipebook');
 
 // create app start express
@@ -36,7 +35,6 @@ app.use(express.static(path.join(__dirname + '/public')));
 // use this format if you want to add a page
 app.use('/', routes);
 app.use('/features', features);
-app.use('/video', video);
 
 app.set('port', (8081));
 

@@ -1,3 +1,4 @@
+<% include youtubeAPI.ejs %> 
 <script>
 
 //Recipe Search Function
@@ -38,13 +39,13 @@
               console.log(data);
               console.log(data.length);
               
-              
               // FOR LOOP TO DISPLAY JSON OBJECTS
               for(var i = 0 ; i <9;i++){
               console.log(data["hits"][i]["recipe"]["label"]);
         $("#recipeLabel").html("");
             
               // APPEND OBJECTS TO A DIV WITH THE ID CALLED 'ONESPAN'
+              
               $("#oneSpan").append("<div class='container' id='recipeBox'>" +
                                   "<h4><a href='" + data["hits"][i]["recipe"]["url"] + "'  target='_blank'>" + data["hits"][i]["recipe"]["label"] + "</a></h4>" +
                                   // ROUND CALORIES BECAUSE ITS A DECIMAL
@@ -61,6 +62,7 @@
                                   
                                   "</div>");
               }
+              youtubeSearch();
             },
         
             complete: function(data,status) { 
@@ -77,30 +79,7 @@
 
         // GET THE VALUE OF WHAT WE WANT TO ADD TO OUR RECIPE BOOK
         alert(recipeValue);
-      var express = require('express');
-var router = express.Router();
-
-        var mysql = require("mysql");
-        var con = mysql.createConnection({
-          host: "localhost",
-          user: "ryanlb22",
-          password: "",
-          database: "c9"
-        });
-        
-        con.connect(function(err) {
-        if (err) throw err;
-        console.log("Connected!");
-        var sql = "INSERT INTO recipebook (recipeURI) VALUES ("+recipeValue+")";
-        con.query(sql, function (err, result) {
-          if (err) throw err;
-          console.log("1 record inserted");
-        });
-      });
-              console.log("end");
-              module.exports = router;
     }
-    
 
         
 </script>

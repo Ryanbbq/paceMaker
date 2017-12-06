@@ -3,6 +3,7 @@ var router = express.Router();
 
 // globals
 var username ="";
+var youtubeAPI = process.env.youtubeAPI;
 
 var mysql = require("mysql");
 var con = mysql.createConnection({
@@ -27,7 +28,7 @@ con.connect(function(err) {
 
 /* Get Features Page */
 router.get('/', function(req,res,next){
-    res.render('features',{title: 'Recipe Search'});
+    res.render('features',{title: 'Recipe Search', youtubeAPI:youtubeAPI});
 });
 
 module.exports = router;
