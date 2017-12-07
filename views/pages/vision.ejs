@@ -18,14 +18,15 @@
     <form id="fileform" action="">
         
         <select name="type">
-        <option value="LANDMARK_DETECTION">LANDMARK_DETECTION</option>
+       <!-- <option value="LANDMARK_DETECTION">LANDMARK_DETECTION</option>
         <option value="TYPE_UNSPECIFIED">TYPE_UNSPECIFIED</option>
         <option value="FACE_DETECTION">FACE_DETECTION</option>
         <option value="LOGO_DETECTION">LOGO_DETECTION</option>
-        <option value="LABEL_DETECTION">LABEL_DETECTION</option>
+        
         <option value="TEXT_DETECTION">TEXT_DETECTION</option>
         <option value="SAFE_SEARCH_DETECTION">SAFE_SEARCH_DETECTION</option>
-        <option value="IMAGE_PROPERTIES">IMAGE_PROPERTIES</option>
+        <option value="IMAGE_PROPERTIES">IMAGE_PROPERTIES</option> -->
+        <option value="LABEL_DETECTION">FOOD DETECTION</option>
         </select><br />
     
     <input type="file"  name="fileField" id="fileChoose"><br /><br />
@@ -42,12 +43,17 @@
             text-align:center;
             padding:10px;
         }
+        
     </style>
   
-    
+         <!-- Block Loading Icon -->
+        <div id="wait2" style="display:none;width:69px;height:89px;position:absolute;top:50%;left:50%;padding:2px;"><img src="images/block.gif" alt="My_Logo"></div>
 
-    <span id="googleSpan"></span>
+        <div id="googleSpan"></div><br>
+     
+        <div id="oneSpan"></div><br>
     
+      
     <% include templates/footer.ejs %>
 </body>
 </html>

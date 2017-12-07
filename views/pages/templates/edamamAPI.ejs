@@ -47,16 +47,16 @@
               $("#recipeLabel").html("");
             
               // APPEND OBJECTS TO A DIV WITH THE ID CALLED 'ONESPAN'
-              
+                  // Ryanbqq
               $("#oneSpan").append("<div class='container' id='recipeBox'>" +
                                   "<h4><a href='" + data["hits"][i]["recipe"]["url"] + "'  target='_blank'>" + data["hits"][i]["recipe"]["label"] + "</a></h4>" +
                                   // ROUND CALORIES BECAUSE ITS A DECIMAL
+                                      // Ryanbqq
                                   "<h6>Calories per recipe:  " +  Math.round(data["hits"][i]["recipe"]["calories"])+"</h6>" +
                                   "<h6>Diet Labels: " + data["hits"][i]["recipe"]["dietLabels"] + "</h6>" + 
                                   "<h6>Source: " + data["hits"][i]["recipe"]["source"] + "</h6>" + 
-                                  
+                                      // Ryanbqq
                                   "<img id='imges' src='" +data["hits"][i]["recipe"]["image"] + "'>"  
-
                                + "<form action='routes/features.js' method='post'>"
                                 +"  <input class='recipeCheckBox' type='checkbox' id='testingVal' onclick='getRecipeURI(\""+ data["hits"][i]["recipe"]["uri"]+ "\")' >"+"Add to recipe book" + 
                             
@@ -80,10 +80,8 @@
     
 
     // getRecipeURI(recipeValue)
+    // Ryanbqq
     function getRecipeURI(recipeValue){
-      
-      //  alert(recipeValue);
-      var a = "TEST";
     // get recipe URI send it to index.js(server)
       var parameters = { value: recipeValue,testVal:a };
        $.get('/recipeURI',parameters, function(data) {

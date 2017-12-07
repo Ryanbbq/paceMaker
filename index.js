@@ -121,8 +121,8 @@ app.listen(app.get('port'), function() {
 
 
 
-http.listen(process.env.PORT, function() {
-  console.log(process.env.IP + ":" + process.env.PORT);
+http.listen(app.get('port'), function() {
+  console.log(process.env.IP + ":" + app.get('port'));
 });
 
 // THE SOCKET PORTAL FOR VARIABLES

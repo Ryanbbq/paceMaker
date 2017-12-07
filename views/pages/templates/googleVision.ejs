@@ -9,7 +9,7 @@
 <body>
   <script>
   
-  
+  // Created By Ryanbbq
   var key = "<%= key %>";
   window.apiKey=key;
   'use strict';
@@ -47,6 +47,8 @@ function processFile (event) {
  * results.
  */
 function sendFileToCloudVision (content) {
+  
+  //grab the form value
   var type = $('#fileform [name=type]').val();
 
   // Strip out the file prefix when you convert to json.
@@ -76,22 +78,135 @@ function sendFileToCloudVision (content) {
  * Displays the results.
  */
 function displayJSON (data) {
+  $("#googleSpan").html("");
+  
   var contents = JSON.stringify(data, null, 4);
   //$('#results').text(contents);
   console.log(data);
   
     
-  
+  var label
   for(var i = 0 ; i < 5 ; i++){
                  
-              $("#googleSpan").append("<h1>" +   data["responses"][0]["labelAnnotations"][i]["description"] +"</h1>"+ 
-                                        "<br><h2>" + data["responses"][0]["labelAnnotations"][i]["score"] +"</h2>");
-                };
+  var score = data["responses"][0]["labelAnnotations"][i]["score"];
+  var label = data["responses"][0]["labelAnnotations"][i]["description"]
+              $("#googleSpan").append("<div id='visionBox'><h3>" + label  +"</h3>"+ 
+      
+                                        "<br><h4>" +score+"</h4>"+
+                                        " <input class='recipeCheckBox' type='checkbox' id='testingVal' onclick='getLabel(\""+ label + "\")' >"+ 
+                                        "</div>" 
+                                      
+                                      );
+    
+  };
   
   
   
   var evt = new Event('results-displayed');
   evt.results = contents;
   document.dispatchEvent(evt);
+  
 }
+  function getLabel(label){
+     $("#wait2").css("display", "block");
+              
+        
+        console.log("EDAMAM API");
+            
+        //Clears the div's contents after each new search
+        $("#label").html("");
+        $("#image").html("");
+        $("#source").html("");
+        $("#oneSpan").html("");
+        $("#recipeLabel").html("");
+
+        //AJAX request for Edamam API
+        $.ajax({
+            //get method
+            type: "get",
+                
+            //gets the url from the api 
+            url: "https://api.edamam.com/search",
+                
+            //JSON, or JavaScript Object Notation, is a minimal, readable format for structuring data. 
+            //It is used primarily to transmit data between a server and web application, as an alternative to XML.
+            dataType: "json",
+                
+            // EDAMAM API
+            data: {
+                // HERE I PASS IN THE SEARCH VALUE FOR Q WHICH IS THE SEARCH VALUE
+                "q":label,
+                "app_key":"", // API Key PLEASE USE YOUR OWN
+            },
+        
+            success: function(data,status) {
+                
+            // VIEW CONSOLE TO SEE JSON OBJECTS
+              console.log(data);
+              console.log(data.length);
+              
+              // FOR LOOP TO DISPLAY JSON OBJECTS
+              for(var aa = 0 ; aa <1;aa++){
+              console.log(data["hits"][aa]["recipe"]["label"]);
+              $("#recipeLabel").html("");
+            
+              // APPEND OBJECTS TO A DIV WITH THE ID CALLED 'ONESPAN'
+                  // Ryanbqq
+              $("#oneSpan").append("<div id='recipeBox2'>" +
+                                  "<h4><a href='" + data["hits"][aa]["recipe"]["url"] + "'  target='_blank'>" + data["hits"][aa]["recipe"]["label"] + "</a></h4>" +
+                                  // ROUND CALORIES BECAUSE ITS A DECIMAL
+                                      // Ryanbqq
+                                  "<h6>Calories per recipe:  " +  Math.round(data["hits"][aa]["recipe"]["calories"])+"</h6>" +
+                                  "<h6>Diet Labels: " + data["hits"][aa]["recipe"]["dietLabels"] + "</h6>" + 
+                                  "<h6>Source: " + data["hits"][aa]["recipe"]["source"] + "</h6>" + 
+                                      // Ryanbqq
+                                  "<img id='imges2' src='" +data["hits"][aa]["recipe"]["image"] + "'>");
+              }
+            },
+        
+            complete: function(data,status) { 
+                // SEE IF WE GET AN ERROR
+          $("#wait2").css("display", "none");
+           
+             console.log(status);
+            }
+        
+		});//AJAX
+  }
   </script>
+  
+  <style>
+    #visionBox{
+      text-align:center;
+        margin:0 auto;
+        float:left;
+        margin-left:2em;
+        margin-bottom:1em;
+        margin-top:1em;
+        width:10em;
+        height:15em;
+        display:block;
+        overflow:auto;
+        border:2px solid green;
+        -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+        box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+        }
+        #recipeBox2{
+        text-align:center;
+        margin:0 auto;
+        float:left;
+        clear:both;
+        width:20em;
+        height:20em;
+        display:block;
+        border:2px solid green;
+        -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+        box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+        }
+        #imges2{
+          height:5em;
+          width:5em;
+        }
+  </style>
