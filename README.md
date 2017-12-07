@@ -5,7 +5,7 @@
 https://pacemaker438.herokuapp.com/
 
 ## Team
-Monique, Brian , Ryan , Kristine
+Monique, Brian, Ryan, Kristine
 
 ## More Information...
 Please visit our Wiki Page for more information and specifications regarding our project.
