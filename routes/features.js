@@ -1,17 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
-<<<<<<< HEAD
-
-// Retrieve recipeValue and pass it to the database
-
-
-=======
 // globals
 var username ="";
 var youtubeAPI = process.env.youtubeAPI;
->>>>>>> origin/kristine_home
 
+/*
 var mysql = require("mysql");
 var con = mysql.createConnection({
   host: "localhost",
@@ -30,7 +24,7 @@ con.connect(function(err) {
     //console.log(result.id);
   });
 });
-
+*
 
 
 /* Get Features Page */

@@ -26,7 +26,7 @@
                 for(var i = 0; i < 3; i++) {
                     //console.log(data["items"][i]);
                     $("#youtubeSpan").append("<br>" + 
-                    "<iframe width='350' height='250' src='https://www.youtube.com/embed/" + data["items"][i]["id"]["videoId"] + "'></iframe>")
+                    "<iframe id='youtubeDiv' width='350' height='250' src='https://www.youtube.com/embed/" + data["items"][i]["id"]["videoId"] + "'></iframe>")
                 }
             },
         
@@ -56,5 +56,15 @@
         -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
         -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
         box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    }
+    #youtubeDiv{
+    float: left;
+    margin-left: 2em;
+    margin-right: 2em;
+    
+    margin-top: 10em;
+    border: 2px solid green;
+    margin-bottom: 2em;
+    margin:0 auto;
     }
 </style>

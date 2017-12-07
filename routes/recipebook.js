@@ -3,7 +3,7 @@ var router = express.Router();
 
 // globals
 var username ="";
-
+/*
 var mysql = require("mysql");
 var con = mysql.createConnection({
   host: "localhost",
@@ -23,14 +23,12 @@ con.connect(function(err) {
     //console.log(result.id);
   });
 });
+*/
 
 /* Get Recipe Book Page */
 router.get('/', function(req,res,next){
-<<<<<<< HEAD
     res.render('recipebook',{title: 'Recipe Book',username:username});
-=======
-    res.render('recipebook',{title: 'Recipe Book', username:username});
->>>>>>> origin/kristine_home
+
 });
 
 module.exports = router;

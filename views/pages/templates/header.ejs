@@ -148,3 +148,20 @@ a:not([href]):not([tabindex]){
         </ul>
       </div>
     </nav>
+    
+    <!--  <input id="test">  
+<button onclick="testFunction()">Test Button</button>
+-->
+<script>
+
+    function testFunction(){
+    console.log("in test function");
+    var a = document.getElementById("test");
+    console.log(a.value);
+      var parameters = { value: a.value };
+       $.get('/userINFO',parameters, function(data) {
+     //  $('#results').html(data);
+     console.log("Sent");
+     });
+    }
+</script>

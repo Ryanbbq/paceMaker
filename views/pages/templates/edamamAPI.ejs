@@ -64,12 +64,13 @@
                                   
                                   "</div>");
               }
-              youtubeSearch();
             },
         
             complete: function(data,status) { 
                 // SEE IF WE GET AN ERROR
             $("#wait").css("display", "none");
+            
+              youtubeSearch();
              console.log(status);
             }
         
@@ -77,29 +78,17 @@
 
     } //End of recipeSearch() function.
     
+
     // getRecipeURI(recipeValue)
     function getRecipeURI(recipeValue){
       
       //  alert(recipeValue);
-   
-        // get recipe URI send it to index.js(server)
-      var parameters = { value: recipeValue };
-       $.get( '/recipeURI',parameters, function(data) {
+      var a = "TEST";
+    // get recipe URI send it to index.js(server)
+      var parameters = { value: recipeValue,testVal:a };
+       $.get('/recipeURI',parameters, function(data) {
      //  $('#results').html(data);
      });
-    }
-    
-    
-    
-    
-    
-    // GET RECIPE LABEL ... IN PROGRESS
-    function getRecipeLabel(recipeLabel){
-        alert(recipeLabel);
-        var parametes = { value:recipeLabel };
-        $.get('/recipeLabel',parameters,function(data){
-           $('#results').html(data); 
-        });
     }
 
 </script>
