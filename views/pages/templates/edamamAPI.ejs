@@ -41,13 +41,27 @@
               console.log(data);
               console.log(data.length);
               
+<<<<<<< HEAD
+              
+              // FOR LOOP TO DISPLAY JSON OBJECTS
+              for(var i = 0 ; i <9;i++){
+              console.log(data["hits"][i]["recipe"]["label"]);
+        $("#recipeLabel").html("");
+            
+              // APPEND OBJECTS TO A DIV WITH THE ID CALLED 'ONESPAN'
+=======
               // FOR LOOP TO DISPLAY JSON OBJECTS
               for(var i = 0 ; i <9;i++){
               console.log(data["hits"][i]["recipe"]["label"]);
               $("#recipeLabel").html("");
             
               // APPEND OBJECTS TO A DIV WITH THE ID CALLED 'ONESPAN'
+<<<<<<< HEAD
                   // Ryanbqq
+=======
+              
+>>>>>>> origin/master
+>>>>>>> 064dc210b034d3bb6b8fd95c54a9b9299fa3bfeb
               $("#oneSpan").append("<div class='container' id='recipeBox'>" +
                                   "<h4><a href='" + data["hits"][i]["recipe"]["url"] + "'  target='_blank'>" + data["hits"][i]["recipe"]["label"] + "</a></h4>" +
                                   // ROUND CALORIES BECAUSE ITS A DECIMAL
@@ -55,10 +69,22 @@
                                   "<h6>Calories per recipe:  " +  Math.round(data["hits"][i]["recipe"]["calories"])+"</h6>" +
                                   "<h6>Diet Labels: " + data["hits"][i]["recipe"]["dietLabels"] + "</h6>" + 
                                   "<h6>Source: " + data["hits"][i]["recipe"]["source"] + "</h6>" + 
+<<<<<<< HEAD
                                       // Ryanbqq
+=======
+<<<<<<< HEAD
+                             
+                                  "<img id='imges' src='" +data["hits"][i]["recipe"]["image"] + "'>"  +
+                                
+                                "<form action='/action_page.php' method='get'>"
+                                +"  <input class='recipeCheckBox' type='checkbox' id='testingVal' onclick='testFunct(\""+ data["hits"][i]["recipe"]["uri"]+ "\")' >"+"Add to recipe book" + 
+=======
+                                  
+>>>>>>> 064dc210b034d3bb6b8fd95c54a9b9299fa3bfeb
                                   "<img id='imges' src='" +data["hits"][i]["recipe"]["image"] + "'>"  
                                + "<form action='routes/features.js' method='post'>"
                                 +"  <input class='recipeCheckBox' type='checkbox' id='testingVal' onclick='getRecipeURI(\""+ data["hits"][i]["recipe"]["uri"]+ "\")' >"+"Add to recipe book" + 
+>>>>>>> origin/master
                             
                                 "</form>"+
                                   
@@ -68,16 +94,51 @@
         
             complete: function(data,status) { 
                 // SEE IF WE GET AN ERROR
+<<<<<<< HEAD
+                     $("#wait").css("display", "none");
+              console.log(status);
+=======
             $("#wait").css("display", "none");
             
               youtubeSearch();
              console.log(status);
+>>>>>>> origin/master
             }
         
 		});//AJAX
 
     } //End of recipeSearch() function.
     
+    function testFunct(recipeValue){
+
+        // GET THE VALUE OF WHAT WE WANT TO ADD TO OUR RECIPE BOOK
+        alert(recipeValue);
+      var express = require('express');
+var router = express.Router();
+
+        var mysql = require("mysql");
+        var con = mysql.createConnection({
+          host: "localhost",
+          user: "ryanlb22",
+          password: "",
+          database: "c9"
+        });
+        
+        con.connect(function(err) {
+        if (err) throw err;
+        console.log("Connected!");
+        var sql = "INSERT INTO recipebook (recipeURI) VALUES ("+recipeValue+")";
+        con.query(sql, function (err, result) {
+          if (err) throw err;
+          console.log("1 record inserted");
+        });
+      });
+              console.log("end");
+              module.exports = router;
+    }
+    
+
+
 
     // getRecipeURI(recipeValue)
     // Ryanbqq
@@ -95,13 +156,17 @@
 
 <style>
     #imges{
-        border:4px solid green;
-        width:13em;
-        height:13em;
-        opacity:1;
-        display:block;
-        transition:.5s ease;
-        backface-visibility:hidden;
+    
+    border:4px solid black;
+    width:13em;
+    height:13em;
+    border:4px solid green;
+    width:13em;
+    height:13em;
+    opacity:1;
+    display:block;
+    transition:.5s ease;
+    backface-visibility:hidden;
     }
 
     .text {
@@ -109,6 +174,7 @@
         color: white;
         font-size: 16px;
         padding: 16px 32px;
+
     }
     #recipeBox{
         margin:0 auto;

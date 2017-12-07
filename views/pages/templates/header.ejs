@@ -72,11 +72,17 @@
     -o-border-image: url(images/border.png) 50% round; /* Opera 11-12.1 */
     border-image: url(images/border.png) 50% round;
 }
+<<<<<<< HEAD
+.modal, .modal-header {
+  text-align: center;
+=======
 a:not([href]):not([tabindex]){
   color:black;
 
+>>>>>>> origin/master
 }
-     </style>
+</style>
+
 <div class="jumbotron text-center" id="jumbo">
   <h1 id="title1">Recipe Vision</h1>
 </div>
@@ -147,6 +153,13 @@ process.env(facebookID);
           </li> 
        
         </ul>
+        
+          <ul class="nav navbar-nav navbar-right">
+            <li id="loginLink"><a class= "nav-link" href="#" data-toggle='modal' data-target='#myModal'>Log In</a></li>
+            <li id="signupLink"><a class= "nav-link" href="/userRegister">Sign Up</a></li>
+            <li id="accSettings" class="hidden"><a id="accLink"> Account Settings</a></li>
+            <li id="logoutLink" class="hidden"><a href="">Log Out</a></li>
+          </ul>
       </div>
     </nav>
     
@@ -166,3 +179,38 @@ process.env(facebookID);
      });
     }
 </script>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel"> Log In </h4>
+            </div>
+            <div class="modal-body">
+                  <input type="text" id="username" name="username" placeholder="Username"><br>
+                  <input type="password" id="password" name="password"  placeholder="Password"><br>
+                  <button onclick="setLoginCookies()" name="loginForm">Login</button>
+            </div>
+          </div>
+        </div>
+    </div> 
+    <!-- End Modal -->
+    
+    <script>
+      function setLoginCookies() {
+        var username = $("#username").val();
+        var password = $("#password").val();
+        
+        var parameters = {username: username, password: password};
+        $.get('/anything', parameters, function(data){
+          console.log("Sending Login credentials");
+        });
+      }
+      
+      function logout() {
+        $.get('/logout', function(data) {
+          console.log("logging out...");
+        });
+      }
+    </script>

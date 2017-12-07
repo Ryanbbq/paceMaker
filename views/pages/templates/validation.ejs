@@ -1,0 +1,88 @@
+<script>
+    function checkUsername() {
+        if( $("#username").val() == "") {
+            $("#available").html("");
+            return;
+        }
+        $.ajax({
+            type: "get",
+            url: "",
+            dataType: "json",
+            data: { "username": $("#username").val() },
+            success: function(data,status) {
+                //alert("??");
+                if(data) {
+                   //alert("username unavailable!");
+                   $("#available").html(" Unavailable");
+                   $("#available").css("color", "red");
+                   //return false;
+                }
+                else {
+                    //alert("username available");
+                    $("#available").html(" Available");
+                    $("#available").css("color", "green");
+                }
+              },
+              complete: function(data,status) { //optional, used for debugging purposes
+                  //alert(status);
+              }
+        });
+    }
+    function passwordMatch() {
+        var match = $("#confirmPass").val();
+        if(match == "") {
+            $("#pwMatchError").html("");
+            return false;
+        }
+        $("#pwMatchError").html("");
+        if(match != $("#password").val()) {
+            $("#pwMatchError").html("Password does not match");
+            $("#pwMatchError").css("color", "red");
+            return false;
+        }
+        return true;
+    }
+    
+    function validateForm(){
+        /*var firstName = document.getElementById("firstName");
+        var lastName = document.getElementById("lastName");
+        var username = document.getElementById("username");
+        var email = document.getElementById("email");
+        var password = document.getElementById("password");
+        var confirmPass = document.getElementById("confirmPass");
+        var available = document.getElementById("available");
+        console.log(firstName.value);
+        //checkUsername();
+        console.log($("#firstName").html());
+        if ($("#available").html() == "" || $("#available").html() == " Unavailable"){
+            $("#incomplete").html("Form is incomplete");
+            $("#incomplete").css("color", "red"); 
+            console.log("here");
+            return false;
+        }*/
+        if($("#firstName").val() == "") { 
+            $("#incomplete").html("Form is incomplete");
+            $("#incomplete").css("color", "red"); 
+            return false;
+        }
+        else if($("#lastName").val() == "") {
+            $("#incomplete").html("Form is incomplete");
+            $("#incomplete").css("color", "red"); 
+            return false;
+        }
+        else if($("#email").val() == "") {
+            $("#incomplete").html("Form is incomplete");
+            $("#incomplete").css("color", "red"); 
+            return false;
+        }
+        else if(!passwordMatch()) {
+            $("#incomplete").html("Form is incomplete");
+            $("#incomplete").css("color", "red"); 
+            return false;
+        }
+        else {
+            var parameters = {firstName: firstName, lastName: lastName, username: username, email: email, password: password}
+            return true;
+        }
+    }
+</script>

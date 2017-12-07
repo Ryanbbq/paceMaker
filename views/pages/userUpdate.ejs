@@ -1,0 +1,33 @@
+<html>
+
+<head>
+    <!-- Include includes template -->
+    <% include templates/includes.ejs %>
+</head>
+
+<body>
+    <!-- Include header template -->
+    <% include templates/header.ejs %>
+    <form method="POST">
+        <legend>Update Account:</legend>
+        <fieldset style="text-align: left; padding-left: 45%;">
+            <input type="text" name="firstName" id="firstName" placeholder="First Name"><br>
+            <input type="text" name="lastName" id="lastName" placeholder="Last Name"> <br><br>
+            <input type="text" name="username" id="username" placeholder="Desired Username" onchange="checkUsername()" ><span id="available"></span><br>
+            <input type="email" name="email" id="email" placeholder="Email" ><br>
+            
+            <input type="password" name="password" id="currentPass" placeholder="Current Password"><br>
+            
+            <input type="password" name="password" id="password" onchange="passwordMatch()" placeholder="New Password"><br>
+            <input type="password" name="confirmPass" id="confirmPass" onchange="passwordMatch()" placeholder="Confirm New Password"><span id="pwMatchError"></span><br>
+            <button type="submit" name="signupForm">Update</button><br>
+            <span id="incomplete"></span>
+        </fieldset>
+    </form>
+</body>
+
+<footer>
+    <!-- Include footer template -->
+    <% include templates/footer.ejs %>
+</footer>
+</html>

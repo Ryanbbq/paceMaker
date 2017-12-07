@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <title>Recipe Vision</title>
+    <% include templates/includes.ejs %>
+    <% include templates/youtubeAPI.ejs %>
+  </head>
+  
+  <body>
+    <!-- Inclue header template -->
+    <% include templates/header.ejs %>
+  
+    <!-- Buttons for recipeSearch() function -->
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="search for a type of food..." name="search" id="searchValue" >
+      <div class="input-group-btn">
+          <button class="btn btn-default" type="submit" onclick="youtubeSearch()" id="button1">
+          Search
+          </button>
+      </div>
+    </div>
+        
+    <!-- Video Display see template folder for id's-->
+    <div class="container">
+        <span id="videos"></span>
+    </div>
+  </body>  
+  <script>
+    // allows the user to press 'enter' to search
+    document.getElementById("searchValue")
+        .addEventListener("keyup", function(event) {
+        event.preventDefault();
+        if (event.keyCode == 13) {
+            document.getElementById("button1").click();
+        }
+    });
+  </script>
+</html>

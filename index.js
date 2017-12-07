@@ -26,6 +26,9 @@ var features = require('./routes/features');
 var vision = require('./routes/vision');
 var recipebook = require('./routes/recipebook');
 var home = require('./routes/home');
+var userUpdate = require('./routes/userUpdate');
+var userLogin = require('./routes/userLogin');
+var userRegister = require('./routes/userRegister');
 
 // views is directory for all template files
 app.set('views', __dirname + '/views/pages');
@@ -56,6 +59,7 @@ app.get('/startCookie', function(req, res) {
   console.log('Signed Cookies: ', req.signedCookies);
 });
 
+app.set('port', (8081));
 
 // get recipe uri
 app.get('/recipeURI', function(req, res) {
@@ -78,12 +82,74 @@ app.use('/features', features);
 app.use('/vision', vision);
 app.use('/recipebook', recipebook);
 app.use('/home', home);
+app.use('/userUpdate', userUpdate);
+app.use('/userRegister', userRegister);
+app.use('/userLogin', userLogin);
 
+// app.use('/about', about); 
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "brilit96",
+  password: "",
+  database: "c9"
+});
 
+app.get('/info', function(req, res) {
+  var FIRST_NAME = req.query.firstName;
+  var LAST_NAME = req.query.lastName;
+  var EMAIL = req.query.email;
+  var USERNAME = req.query.username;
+  var PASSWORD = req.query.password;
 
+  var sqlStmnt = "SELECT username FROM users";
 
+  con.query(sqlStmnt, function(err, result) {
+    if (err) throw err;
+    var incomplete;
+    for (var i = 0; i < result.length; i++) {
+      if (result[i].username === USERNAME) {
+        console.log("Username already taken");
+        incomplete = true;
+        break;
+        }
+      }
+      
+      if(!incomplete) {
+      //DO NOT PUT QUOTES AROUND TABLE/COLUMN NAMES
+        var sql = "INSERT INTO users (id, username, email, password) VALUES (" + null + ", '" + USERNAME + "', '" + EMAIL + "', '" + PASSWORD + "')";
+        console.log(sql);
+        con.query(sql, function(err, result) {
+          if (err) throw err;
+          console.log("User inserted");
+        });  
+      }
+  });
+});
 
-//app.use('/about', about); 
+app.get('/anything', function(req, res) {
+  
+  console.log(req.query.username, req.query.password);
+  
+  var sql = "SELECT * FROM users WHERE username = '" + req.query.username + 
+            "' AND password = '" +  req.query.password + "'";
+  
+  console.log(sql);
+  
+  con.query(sql, function(err, result) {
+    if (err) throw err;
+    
+    if(result) {
+      console.log(result[0].username);
+      res.cookie('username', result[0].username).send('cookie set');
+    } else {
+      console.log("no results");
+    }
+  });
+});
+
+app.get('/logout', function(req, res) {
+  console.log("hello");
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -93,7 +159,7 @@ app.use(function(req, res, next) {
 });
 
 
-//production development...
+// production development...
 // error handler
 /*
 app.use(function(err, req, res, next) {
