@@ -1,0 +1,59 @@
+<html>
+
+<head>
+    <!-- Include includes file -->
+    <% include templates/includes.ejs %>
+</head>
+
+<body>
+    <!-- Include header template -->
+    <% include templates/header.ejs %>
+ <!--  <%= username %> -->
+   <style>
+   
+    .sidenav a {
+        color: white;
+        padding:1em;
+        text-decoration: none;
+        display: block;
+        text-align:left;
+        border: 10px solid transparent;
+        padding: 15px;
+        -webkit-border-image: url(images/border.png) 30 round; /* Safari 3.1-5 */
+        -o-border-image: url(images/border.png) 30 round; /* Opera 11-12.1 */
+        border-image: url(images/border.png) 30 round;
+        border-radius: 15px;
+        margin-bottom:.5em;
+    }
+    .sidenav {
+        float:left;
+        position: fixed;
+        width:10em;
+        height:26em;
+        background-color: #4CAF50;
+        overflow-x: hidden;
+         border-radius: 15px;
+        background: #73AD21;
+        padding: 1em; 
+        border:2px solid green;
+    }
+    .content {
+        margin-left: 200px;
+        padding-left: 20px;
+    }
+   </style>
+   <div class="sidenav">
+        <a href="#">Username</a>
+        <a href="#">Profile Picture</a>
+        <a href="#">Email</a>
+        <a href="#">Settings</a>
+   </div>
+   <div class="content">
+  <h2>Saved Recipes</h2>
+  <p>This section will contain user info and recipes that were saved</p>
+</div>
+    <!-- Inclue footer template -->
+    <% include templates/footer.ejs %>
+</body>
+
+</html>
