@@ -44,13 +44,23 @@
     }
     
     function validateForm(){
+        /*var firstName = document.getElementById("firstName");
+        var lastName = document.getElementById("lastName");
+        var username = document.getElementById("username");
+        var email = document.getElementById("email");
+        var password = document.getElementById("password");
+        var confirmPass = document.getElementById("confirmPass");
+        var available = document.getElementById("available");
+        console.log(firstName.value);
         //checkUsername();
+        console.log($("#firstName").html());
         if ($("#available").html() == "" || $("#available").html() == " Unavailable"){
             $("#incomplete").html("Form is incomplete");
             $("#incomplete").css("color", "red"); 
+            console.log("here");
             return false;
-        }
-        else if($("#firstName").val() == "") { 
+        }*/
+        if($("#firstName").val() == "") { 
             $("#incomplete").html("Form is incomplete");
             $("#incomplete").css("color", "red"); 
             return false;
@@ -71,6 +81,7 @@
             return false;
         }
         else {
+            var parameters = {firstName: firstName, lastName: lastName, username: username, email: email, password: password}
             return true;
         }
     }
