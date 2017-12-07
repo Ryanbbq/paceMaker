@@ -1,5 +1,8 @@
-<script>
+<% include youtubeAPI.ejs %> 
 
+
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
 //Recipe Search Function
     function recipeSearch(){
         //alert("Clicked!");
@@ -38,6 +41,7 @@
               console.log(data);
               console.log(data.length);
               
+<<<<<<< HEAD
               
               // FOR LOOP TO DISPLAY JSON OBJECTS
               for(var i = 0 ; i <9;i++){
@@ -45,17 +49,34 @@
         $("#recipeLabel").html("");
             
               // APPEND OBJECTS TO A DIV WITH THE ID CALLED 'ONESPAN'
+=======
+              // FOR LOOP TO DISPLAY JSON OBJECTS
+              for(var i = 0 ; i <9;i++){
+              console.log(data["hits"][i]["recipe"]["label"]);
+              $("#recipeLabel").html("");
+            
+              // APPEND OBJECTS TO A DIV WITH THE ID CALLED 'ONESPAN'
+              
+>>>>>>> origin/master
               $("#oneSpan").append("<div class='container' id='recipeBox'>" +
                                   "<h4><a href='" + data["hits"][i]["recipe"]["url"] + "'  target='_blank'>" + data["hits"][i]["recipe"]["label"] + "</a></h4>" +
                                   // ROUND CALORIES BECAUSE ITS A DECIMAL
                                   "<h6>Calories per recipe:  " +  Math.round(data["hits"][i]["recipe"]["calories"])+"</h6>" +
                                   "<h6>Diet Labels: " + data["hits"][i]["recipe"]["dietLabels"] + "</h6>" + 
                                   "<h6>Source: " + data["hits"][i]["recipe"]["source"] + "</h6>" + 
+<<<<<<< HEAD
                              
                                   "<img id='imges' src='" +data["hits"][i]["recipe"]["image"] + "'>"  +
                                 
                                 "<form action='/action_page.php' method='get'>"
                                 +"  <input class='recipeCheckBox' type='checkbox' id='testingVal' onclick='testFunct(\""+ data["hits"][i]["recipe"]["uri"]+ "\")' >"+"Add to recipe book" + 
+=======
+                                  
+                                  "<img id='imges' src='" +data["hits"][i]["recipe"]["image"] + "'>"  
+
+                               + "<form action='routes/features.js' method='post'>"
+                                +"  <input class='recipeCheckBox' type='checkbox' id='testingVal' onclick='getRecipeURI(\""+ data["hits"][i]["recipe"]["uri"]+ "\")' >"+"Add to recipe book" + 
+>>>>>>> origin/master
                             
                                 "</form>"+
                                   
@@ -65,14 +86,22 @@
         
             complete: function(data,status) { 
                 // SEE IF WE GET AN ERROR
+<<<<<<< HEAD
                      $("#wait").css("display", "none");
               console.log(status);
+=======
+            $("#wait").css("display", "none");
+            
+              youtubeSearch();
+             console.log(status);
+>>>>>>> origin/master
             }
         
 		});//AJAX
 
     } //End of recipeSearch() function.
     
+<<<<<<< HEAD
     function testFunct(recipeValue){
 
         // GET THE VALUE OF WHAT WE WANT TO ADD TO OUR RECIPE BOOK
@@ -103,12 +132,47 @@ var router = express.Router();
     
 
         
+=======
+
+    // getRecipeURI(recipeValue)
+    function getRecipeURI(recipeValue){
+      
+      //  alert(recipeValue);
+      var a = "TEST";
+    // get recipe URI send it to index.js(server)
+      var parameters = { value: recipeValue,testVal:a };
+       $.get('/recipeURI',parameters, function(data) {
+     //  $('#results').html(data);
+     });
+    }
+
+
+>>>>>>> origin/master
 </script>
+
+
 <style>
     #imges{
+<<<<<<< HEAD
     border:4px solid black;
     width:13em;
     height:13em;
+=======
+        border:4px solid green;
+        width:13em;
+        height:13em;
+        opacity:1;
+        display:block;
+        transition:.5s ease;
+        backface-visibility:hidden;
+    }
+
+    .text {
+        background-color: #4CAF50;
+        color: white;
+        font-size: 16px;
+        padding: 16px 32px;
+>>>>>>> origin/master
     }
     #recipeBox{
         margin:0 auto;
@@ -120,7 +184,11 @@ var router = express.Router();
         width:20em;
         height:25em;
         overflow:auto;
+<<<<<<< HEAD
         border:2px solid black;
+=======
+        border:2px solid green;
+>>>>>>> origin/master
         -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
         -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
         box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
