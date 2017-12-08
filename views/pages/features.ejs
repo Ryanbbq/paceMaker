@@ -1,8 +1,3 @@
-<script>
- // check if user is logged in or not   
-    
-    
-</script>
 
 <html>
     <head>
@@ -23,6 +18,14 @@
        
     <% include templates/header.ejs %>
     <% include templates/edamamAPI.ejs %>
+    <br>
+    <script>
+ // check if user is logged in or not   
+    if(!getCookie("username")) {
+        window.location.replace("/userRegister");
+    }
+    
+</script>
 <div id="box">
     
     <!-- Tomato Loading Icon -->

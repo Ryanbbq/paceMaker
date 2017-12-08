@@ -83,6 +83,7 @@ a:not([href]):not([tabindex]){
 </div>
 <div id="fb-root"></div>
 
+
 <title>Recipe Vision</title>
 <div class="container">
   <hr >
@@ -90,7 +91,7 @@ a:not([href]):not([tabindex]){
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"><i class="material-icons" style="font-size:2em">all_inclusive</i></span>
       </button>
-      <a class="navbar-brand"><%= title %></a>
+      <a class="navbar-brand" id="title"><%= title %></a>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item active">
@@ -99,7 +100,7 @@ a:not([href]):not([tabindex]){
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/features">Try it now!</a>
+            <a class="nav-link" href="/features">Manual Search</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/vision">Image Search</a>
@@ -115,7 +116,7 @@ a:not([href]):not([tabindex]){
             <li id="loginLink"><a class= "nav-link" href="#" data-toggle='modal' data-target='#myModal'>Log In</a></li>
             <li id="signupLink"><a class= "nav-link" href="/userRegister">Sign Up</a></li>
             <li id="accSettings" class="hidden"><a id="accLink"> Account Settings</a></li>
-            <li id="logoutLink" class="hidden"><a href="">Log Out</a></li>
+            <li id="logoutLink" class="hidden"><a class= "nav-link" onclick="logout()" >Log Out</a></li>
           </ul>
       </div>
     </nav>
@@ -141,8 +142,8 @@ a:not([href]):not([tabindex]){
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="myModalLabel"> Log In </h4>
+             
+              <h4 class="modal-title" id="myModalLabel"> Log In </h4> <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
                   <input type="text" id="username" name="username" placeholder="Username"><br>
@@ -153,21 +154,63 @@ a:not([href]):not([tabindex]){
         </div>
     </div> 
     <!-- End Modal -->
+    <style>
+      #myModal{
+        text-align:center;
+        float:left;
+      }
+    </style>
     
     <script>
+   
+      function getCookie(name) {
+        var value = "; " + document.cookie;
+        var parts = value.split("; " + name + "=");
+        if (parts.length == 2) return parts.pop().split(";").shift();
+      }
+      
       function setLoginCookies() {
         var username = $("#username").val();
         var password = $("#password").val();
-        
+        if(password == "" || username ==""){
+          alert("enter a login");
+          return;
+        }
+      
         var parameters = {username: username, password: password};
         $.get('/anything', parameters, function(data){
-          console.log("Sending Login credentials");
+         // console.log("Sending Login credentials");
         });
+        getUsername();
+      }
+      
+      
+      function getUsername(){
+        $("#title").html("Hello " + getCookie("username"));
       }
       
       function logout() {
-        $.get('/logout', function(data) {
-          console.log("logging out...");
-        });
+        console.log("Log out");
+        var cookies = document.cookie.split(";");
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i];
+            var eqPos = cookie.indexOf("=");
+            var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+        }
+        
+        $("#title").html("<%= title %>");
+        $("#loginLink").removeClass("hidden");
+        $("#signupLink").removeClass("hidden");
+        $("#logoutLink").addClass("hidden");
+      }
+      
+      
+      console.log(getCookie("username"));
+      if(getCookie("username")) {
+        $("#title").html("Hello " + getCookie("username"));
+        $("#loginLink").addClass("hidden");
+        $("#signupLink").addClass("hidden");
+        $("#logoutLink").removeClass("hidden");
       }
     </script>

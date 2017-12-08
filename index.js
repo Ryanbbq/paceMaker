@@ -14,6 +14,8 @@ var mysql = require("mysql");
 var clientUsername;
 var clientEmail;
 var clientPassword;
+var clientFirstname;
+var clientLastname;
 
 // global keys
 var googleVisionKEY = process.env.googleVisionKEY;
@@ -50,14 +52,14 @@ var con = mysql.createConnection({
   password: "",
   database: "c9"
 });
-
+/*
 app.get('/startCookie', function(req, res) {
   // Cookies that have not been signed
   console.log('Cookies: ', req.cookies);
   res.cookie('name', 'doggy').send('cookie set');
   // Cookies that have been signed
   console.log('Signed Cookies: ', req.signedCookies);
-});
+});*/
 
 app.set('port', (8081));
 
@@ -87,20 +89,24 @@ app.use('/userRegister', userRegister);
 app.use('/userLogin', userLogin);
 
 // app.use('/about', about); 
-var con = mysql.createConnection({
+/*var con = mysql.createConnection({
   host: "localhost",
   user: "brilit96",
   password: "",
   database: "c9"
 });
+*/
 
-app.get('/info', function(req, res) {
+/*
+app.get('/userRegistration', function(req, res) {
   var FIRST_NAME = req.query.firstName;
   var LAST_NAME = req.query.lastName;
   var EMAIL = req.query.email;
-  var USERNAME = req.query.username;
+  var USERNAME = req.query.userName;
   var PASSWORD = req.query.password;
-
+  var DATE = Date.now();  
+  console.log(USERNAME)
+  console.log(PASSWORD);
   var sqlStmnt = "SELECT username FROM users";
 
   con.query(sqlStmnt, function(err, result) {
@@ -113,18 +119,19 @@ app.get('/info', function(req, res) {
         break;
         }
       }
-      
-      if(!incomplete) {
+      //INSERT INTO `users`(`id`, `username`, `email`, `password`, `date`, `firstName`, `lastName`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7])
+     if(!incomplete) {
       //DO NOT PUT QUOTES AROUND TABLE/COLUMN NAMES
-        var sql = "INSERT INTO users (id, username, email, password) VALUES (" + null + ", '" + USERNAME + "', '" + EMAIL + "', '" + PASSWORD + "')";
+        var sql = "INSERT INTO `users`(`id`, `username`, `email`, `password`, `date`, `firstName`, `lastName`) VALUES (" + null + "," + USERNAME + "," + EMAIL +"," + PASSWORD + "," + DATE + "," +FIRST_NAME + "," + LAST_NAME + ")";
         console.log(sql);
         con.query(sql, function(err, result) {
           if (err) throw err;
           console.log("User inserted");
         });  
-      }
+     }
   });
 });
+*/
 
 app.get('/anything', function(req, res) {
   
@@ -137,10 +144,12 @@ app.get('/anything', function(req, res) {
   
   con.query(sql, function(err, result) {
     if (err) throw err;
-    
-    if(result) {
+    console.log(result[0]);
+    if(result[0]) {
+      
       console.log(result[0].username);
       res.cookie('username', result[0].username).send('cookie set');
+      var userInside = result[0].username;
     } else {
       console.log("no results");
     }
@@ -159,37 +168,14 @@ app.use(function(req, res, next) {
 });
 
 
-// production development...
-// error handler
-/*
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+//process.env.PORT
+//app.get('port')
+
+http.listen(app.get('port'), function() {
+  console.log(process.env.IP + ":" +app.get('port') );
 });
-*/
-/*
 
-http.listen(8081, function() {
-  console.log(process.env.IP + ":" +8081);
-});*/
-
-/*
-app.listen(app.get('port'), function() {
-  console.log('Recipe Vision Server 1 is running on port:', app.get('port'));
-  console.log('Please visit the server on: https://localhost:' + app.get('port')+'/');
-});*/
-
-
-
-
-http.listen(process.env.PORT, function() {
-  console.log(process.env.IP + ":" + process.env.PORT);
-});
 
 // THE SOCKET PORTAL FOR VARIABLES
 io.on('connection', function(socket) {
@@ -198,23 +184,47 @@ io.on('connection', function(socket) {
 
   socket.on('initialize', function(data) {
     console.log(data);
-    var a = data.usernameParam;
+    var a = data;
     clientUsername = data.usernameParam;
     clientEmail = data.emailParam;
     clientPassword = data.passwordParam;
+    clientFirstname = data.firstNameParam;
+    clientLastname = data.lastNameParam;
+    
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+    
+    if(dd<10) {
+      dd = '0'+dd
+    } 
+    
+    if(mm<10) {
+      mm = '0'+mm
+    } 
+    
+    today = mm + '/' + dd + '/' + yyyy;
+   
 
-    var sql = "INSERT INTO `users`(`username`, `email`, `password`) VALUES ('" + clientUsername + "', '" + clientEmail + "','" + clientPassword + "')";
+    var sql = "INSERT INTO `users`(`username`, `email`, `password`,`date`,`firstName`,`lastName`) VALUES ('" + clientUsername + "', '" + clientEmail + "','" + clientPassword + "' , '"+today+ "','"+clientFirstname + "','" + clientLastname + "')";
+    //var sql = "INSERT INTO `users`(`id`, `username`, `email`, `password`, `date`, `firstName`, `lastName`) VALUES (" + null + "," + clientUsername + "," + clientEmail +"," + clientPassword + "," + DATE + "," +clientFirstname + "," + clientLastname + ")";
+    console.log(sql);
     con.query(sql, function(err, result) {
       if (err) throw err;
       console.log("1 record inserted");
     });
 
     //back to specific person who emitted
-    socket.emit('chat', a);
+
     //emits to everyone
     //io.emit();
   });
-
+  /*
+  socket.on('initialize2', function(data) {
+    socket.emit('c')
+  });
+  */
 });
 
 module.exports = app;

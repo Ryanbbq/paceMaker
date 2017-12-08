@@ -21,80 +21,10 @@
     }
 
     </style>
-    
-    <!--<table>-->
-    <!--  <tr>-->
-    <!--    <td>Enter Username<input id="username"></input></td>-->
-    <!--  </tr>-->
-    <!--  <tr>-->
-    <!--    <td>Enter Email<input id="email"></input></td>-->
-    <!--  </tr>-->
-    <!--  <tr>-->
-    <!--    <td>Enter Password<input id="password"></input></td>-->
-    <!--  </tr>-->
-    <!--</table>-->
-<!--
-      <div id="registrationBox">  
-  <form id="contact">
-    <h3>Registration</h3>
-    <fieldset>
-      <input placeholder="Username" id="username" tabindex="1" required autofocus>
-    </fieldset>
-    <fieldset>
-      <input placeholder="Email" id="email" tabindex="2" required>
-    </fieldset>
-    <fieldset>
-      <input type="telephone" placeholder="Phone Number(Optional)" id="telephone" tabindex="3" required>
-    </fieldset>
-    <fieldset>
-      <input type="password" placeholder="Password" id="password" required>
-    </fieldset>
-       <fieldset>
-      <input type="password" placeholder="Confirm Password" id="confirmPassword" required>
-    </fieldset>
-    <fieldset>
-      <button onclick="getRegistration()">Submit</button>
-    </fieldset>
-    
-  </form>
-</div>
-      -->
    
-      
-      
-      <script src="/socket.io/socket.io.js"></script>
-      <script>
-      $.get('/startCookie',function(data){
-        console.log(data);
-      });
-      
-      function getRegistration(){
-        var username = document.getElementById("username");
-        var email = document.getElementById("email");
-        var password = document.getElementById("password");
-        var confirmpassword = document.getElementById("confirmPassword");
-        var phone = document.getElementById("telephone");
-        //alert(username.value);
-        
-        //console.log(iii.value);
-        //alert(iii.value);
-        var socket = io();
-        var test = "connected";
-        var parameters = { usernameParam: username.value, emailParam:email.value,passwordParam:password.value};
-        console.log(parameters);
-        alert("Store params");
-        socket.emit('initialize', parameters);
-        socket.on('chat', function(msg) {
-            alert(msg);
-            
-        });
-      }
-         
-      </script>
-  
-    
+   <div id="displayName"></div>
     <% include templates/footer.ejs %>
-    
+
 </body>
 
 </html>

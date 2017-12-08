@@ -10,72 +10,81 @@
     <!-- Include header template -->
     <% include templates/header.ejs %>
     <% include templates/validation.ejs %>
-   
-        <legend>Sign Up</legend>
-        <fieldset style="text-align: left; padding-left: 45%;">
-            <input type="text" name="firstName" id="firstName" placeholder="First Name"><br>
-            <input type="text" name="lastName" id="lastName" placeholder="Last Name"><br><br>
-            <input type="text" name="username" id="username" placeholder="Desired Username" onchange="checkUsername()"><span id="available"></span><br>
-            <input type="email" name="email" id="email" placeholder="Email"><br>
-            <input type="password" name="password" id="password" onchange="" placeholder="Password"><br>
-            <input type="password" name="confirmPass" id="confirmPass" onchange="" placeholder="Confirm Password"><span id="pwMatchError"></span><br>
-            <button onclick="validateForm()" name="signupForm">Sign Up</button><br>
-            <span id="incomplete"></span>
+      <div id="registerBox">  
+     
+        <h3>Registration</h3>
+               <fieldset>
+          <input placeholder="Firstname" id="firstName" tabindex="1" required autofocus>
         </fieldset>
+               <fieldset>
+          <input placeholder="Lastname" id="lastName" tabindex="1" required autofocus>
+        </fieldset>
+        <fieldset>
+          <input placeholder="Username" id="usernameRegister" tabindex="1" required autofocus>
+        </fieldset>
+        <fieldset>
+          <input placeholder="Email" id="email" tabindex="2" required>
+        </fieldset>
+        <fieldset>
+          <input type="password" placeholder="Password" id="passwordRegister" required>
+        </fieldset>
+           <fieldset>
+          <input type="password" placeholder="Confirm Password" id="confirmPassword" required>
+        </fieldset>
+        <fieldset>
+          <button onclick="getRegistration()">Submit</button>
+        </fieldset>
+       
+  
+        </div>
 
+    <style>
+        #registerBox{
+            float:left;
+            display:block;
+            font-size:1em;
+        }
+    </style>
+
+    <script src="/socket.io/socket.io.js"></script>
 <script>
-        function validateForm(){
+
+      
+ function getRegistration(){
+     
         var firstName = document.getElementById("firstName");
         var lastName = document.getElementById("lastName");
-        var username = document.getElementById("username");
+        var username = document.getElementById("usernameRegister");
         var email = document.getElementById("email");
-        var password = document.getElementById("password");
-        var confirmPass = document.getElementById("confirmPass");
-        var available = document.getElementById("available");
+        var password = document.getElementById("passwordRegister");
+      //  var confirmPass = document.getElementById("confirmPass");
+       // var available = document.getElementById("available");
+      //  console.log(firstName);
+    //    console.log(username.value);
+      //  console.log(firstName.value);
+        var socket = io();
+        var test = "connected";
+        var parameters = { usernameParam:username.value , emailParam:email.value , passwordParam:password.value , firstNameParam:firstName.value , lastNameParam:lastName.value  };
+        console.log(parameters);
+        //alert("Store params");
+        socket.emit('initialize', parameters);
         
-        console.log(firstName.value);
-         var parameters = {firstName: firstName.value, lastName: lastName.value, username: username.value, email: email.value, password: password.value};
-            console.log(parameters);
-            $.get('/info', parameters, function(data) {
-                console.log("Send to server...");
-            });
-        //checkUsername();
-        /*if ($("#available").html() == "" || $("#available").html() == " Unavailable"){
-            $("#incomplete").html("Form is incomplete");
-            $("#incomplete").css("color", "red"); 
-            return false;
-        }
-        if($("#firstName").val() == "") { 
-            $("#incomplete").html("Form is incomplete");
-            $("#incomplete").css("color", "red"); 
-            return false;
-        }
-        else if($("#lastName").val() == "") {
-            $("#incomplete").html("Form is incomplete");
-            $("#incomplete").css("color", "red"); 
-            return false;
-        }
-        else if($("#email").val() == "") {
-            $("#incomplete").html("Form is incomplete");
-            $("#incomplete").css("color", "red"); 
-            return false;
-        }
-        else if(!passwordMatch()) {
-            $("#incomplete").html("Form is incomplete");
-            $("#incomplete").css("color", "red"); 
-            return false;
-        }
-        else {
-            console.log("complete");
-            var parameters = {firstName: firstName.value, lastName: lastName.value, username: username.value, email: email.value, password: password.value};
-            console.log(parameters);
-            $.get('/userInfo', parameters, function(data){
-                console.log("Send to server...");
-            });
-            return true;
-        }*/
-    }
-</script>    
+        
+        socket.on('chat', function(msg) {
+           // alert(msg);
+            
+        });
+        
+        $("#firstName").val('');
+        $("#lastName").val('');
+        $("#usernameRegister").val('');
+        $("#email").val('');
+        $("#confirmPassword").val('');
+        $("#passwordRegister").val('');
+      }
+    
+</script>  
+
 </body>
 
 <footer>
