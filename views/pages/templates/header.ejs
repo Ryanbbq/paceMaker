@@ -176,16 +176,16 @@ a:not([href]):not([tabindex]){
 -->
 <script>
 
-    function testFunction(){
-    console.log("in test function");
-    var a = document.getElementById("test");
-    console.log(a.value);
-      var parameters = { value: a.value };
-       $.get('/userINFO',parameters, function(data) {
-     //  $('#results').html(data);
-     console.log("Sent");
-     });
-    }
+    // function testFunction(){
+    // console.log("in test function");
+    // var a = document.getElementById("test");
+    // console.log(a.value);
+    //   var parameters = { value: a.value };
+    //   $.get('/userINFO',parameters, function(data) {
+    // //  $('#results').html(data);
+    // console.log("Sent");
+    // });
+    // }
 </script>
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -228,7 +228,7 @@ a:not([href]):not([tabindex]){
         }
       
         var parameters = {username: username, password: password};
-        $.get('/anything', parameters, function(data){
+        $.get('/getLogin', parameters, function(data){
          // console.log("Sending Login credentials");
         });
         getUsername();

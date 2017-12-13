@@ -88,52 +88,7 @@ app.use('/userUpdate', userUpdate);
 app.use('/userRegister', userRegister);
 app.use('/userLogin', userLogin);
 
-// app.use('/about', about); 
-/*var con = mysql.createConnection({
-  host: "localhost",
-  user: "brilit96",
-  password: "",
-  database: "c9"
-});
-*/
-
-/*
-app.get('/userRegistration', function(req, res) {
-  var FIRST_NAME = req.query.firstName;
-  var LAST_NAME = req.query.lastName;
-  var EMAIL = req.query.email;
-  var USERNAME = req.query.userName;
-  var PASSWORD = req.query.password;
-  var DATE = Date.now();  
-  console.log(USERNAME)
-  console.log(PASSWORD);
-  var sqlStmnt = "SELECT username FROM users";
-
-  con.query(sqlStmnt, function(err, result) {
-    if (err) throw err;
-    var incomplete;
-    for (var i = 0; i < result.length; i++) {
-      if (result[i].username === USERNAME) {
-        console.log("Username already taken");
-        incomplete = true;
-        break;
-        }
-      }
-      //INSERT INTO `users`(`id`, `username`, `email`, `password`, `date`, `firstName`, `lastName`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7])
-     if(!incomplete) {
-      //DO NOT PUT QUOTES AROUND TABLE/COLUMN NAMES
-        var sql = "INSERT INTO `users`(`id`, `username`, `email`, `password`, `date`, `firstName`, `lastName`) VALUES (" + null + "," + USERNAME + "," + EMAIL +"," + PASSWORD + "," + DATE + "," +FIRST_NAME + "," + LAST_NAME + ")";
-        console.log(sql);
-        con.query(sql, function(err, result) {
-          if (err) throw err;
-          console.log("User inserted");
-        });  
-     }
-  });
-});
-*/
-
-app.get('/anything', function(req, res) {
+app.get('/getLogin', function(req, res) {
   
   console.log(req.query.username, req.query.password);
   
