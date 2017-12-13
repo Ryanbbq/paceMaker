@@ -8,7 +8,13 @@
 <body>
     <!-- Include header template -->
     <% include templates/header.ejs %>
- 
+     <script>
+    // check if user is logged in or not   
+    if(!getCookie("username")) {
+        window.location.replace("/userRegister");
+    }
+    
+    </script>
    <style>
    
     .sidenav a {

@@ -5,7 +5,12 @@
     <!-- Include includes template -->
     <% include templates/includes.ejs %>
 </head>
-
+<style>
+  h7{
+    color:red;
+    margin-bottom:1em;
+  }
+</style>
 <body>
     <!-- Include header template -->
     <% include templates/header.ejs %>
@@ -13,7 +18,8 @@
       <div id="registerBox">  
      
         <h3>Registration</h3>
-               <fieldset>
+        <h7>Please register or login before using recipe vision</h7>
+        <fieldset>
           <input placeholder="Firstname" id="firstName" tabindex="1" required autofocus>
         </fieldset>
                <fieldset>
@@ -37,6 +43,8 @@
        
   
         </div>
+        
+        
 
     <style>
         #registerBox{

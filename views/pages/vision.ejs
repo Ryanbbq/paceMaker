@@ -7,12 +7,17 @@
   <body>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 
-  <script>
-
-  </script>
+ 
   
     <% include templates/header.ejs %>
-   
+    <script>
+ // check if user is logged in or not   
+ console.log(getCookie("username"));
+    if(!getCookie("username")) {
+        window.location.replace("/userRegister");
+    }
+    
+  </script>
     
     <div id="fileContainer">
     <form id="fileform" action="">
