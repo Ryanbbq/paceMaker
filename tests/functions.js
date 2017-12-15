@@ -1,7 +1,4 @@
-<script>
-    //Recipe Search Function
 function youtubeSearch() {
-    var success1;
     console.log("YOUTUBE API");
 
     //Clears the div's contents after each new search
@@ -22,51 +19,19 @@ function youtubeSearch() {
 
         success: function(data, status) {
             console.log(data);
-            success1 = status;
+
             for (var i = 0; i < 3; i++) {
                 //console.log(data["items"][i]);
                 $("#youtubeSpan").append("<br>" +
                     "<iframe id='youtubeDiv' width='350' height='250' src='https://www.youtube.com/embed/" + data["items"][i]["id"]["videoId"] + "'></iframe>")
             }
+            console.log("Success Status: " + status);
+            return status;
         },
 
         complete: function(data, status) {
-            success1 = status;
+            console.log("Complete Status: " + status);
+            return status;
         }
     }); //AJAX
-    
-    console.log("Success: " + success1);
-    } //End of youtubeSearch() function.
-</script>
-<style>
-    #imges{
-    border:4px solid black;
-    width:13em;
-    height:13em;
-    }
-    #recipeBox{
-        margin:0 auto;
-        margin-right:2em;
-        margin-left:2em;
-        float:left;
-        margin-bottom:1em;
-        margin-top:1em;
-        width:20em;
-        height:25em;
-        overflow:auto;
-        border:2px solid black;
-        -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-        -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-        box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-    }
-    #youtubeDiv{
-    float: left;
-    margin-left: 2em;
-    margin-right: 2em;
-    
-    margin-top: 10em;
-    border: 2px solid green;
-    margin-bottom: 2em;
-    margin:0 auto;
-    }
-</style>
+} //End of youtubeSearch() function.

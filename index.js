@@ -50,13 +50,16 @@ app.use(express.static(path.join(__dirname + '/public')));
 app.set('port', (8082));
 
 // start connection for mysql database
+
 function myDBOPEN(){
   dbConnection = mysql.createConnection({
   host: dbHost,
   user: dbUser,
   password: dbPass,
   database: dbName,
+
 });
+
 dbConnection.query('SELECT 1 + 1 AS solution', (error, results, fields) => {
   if (error) throw error;
   console.log('The database is now connected ::', results[0].solution);
@@ -78,7 +81,7 @@ app.set('port', (8081));
 
 // get recipe uri
 app.get('/recipeURI', function(req, res) {
-  myDBOPEN();
+
   var RECIPEVALUE = req.query.value;
   console.log(RECIPEVALUE);
   var test = req.query.testVal;
@@ -88,7 +91,7 @@ app.get('/recipeURI', function(req, res) {
     if (err) throw err;
     console.log("1 record inserted");
   });
-dbConnection.end();
+
 });
 
 // page routing dependencies
@@ -103,7 +106,7 @@ app.use('/userRegister', userRegister);
 app.use('/userLogin', userLogin);
 
 app.get('/getLogin', function(req, res) {
-myDBOPEN();
+
   console.log(req.query.username, req.query.password);
 
   var sql = "SELECT * FROM users WHERE username = '" + req.query.username +
@@ -143,8 +146,8 @@ app.use(function(req, res, next) {
 //process.env.PORT
 //app.get('port')
 
-http.listen(app.get('port'), function() {
-  console.log(process.env.IP + ":" + app.get('port'));
+http.listen(process.env.PORT , function() {
+  console.log(process.env.IP + ":" +process.env.PORT );
 });
 
 
