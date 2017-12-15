@@ -101,29 +101,28 @@ a:not([href]):not([tabindex]){
         <ul class="navbar-nav">
           <!-- Accent-colored raised button with ripple -->
 
-
-          <li class="nav-item active">
-             <button id="homeButton" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+   <li class="nav-item active">
+             <button hidden id="homeButton" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
           Home
           </button>
           </li>
           <li class="nav-item">
           <button id="manualButton" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-          Manual Search
+          Recipe Search
           </button>
           </li>
           <li class="nav-item">
           <button id="imageButton" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-          Image Search
+          Google Vision Search
           </button>
           </li>                
 
           <li class="nav-item">
-             <button id="recipeBook" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-          Recipe Book
+             <button id="landingPage" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+          Landing Page
           </button>
-          </li> 
-       
+          </li>            
+
         </ul></div>
         
           <ul class="nav navbar-nav navbar-right">
@@ -163,8 +162,8 @@ a:not([href]):not([tabindex]){
       document.getElementById("imageButton").onclick = function () {
         location.href = "/vision";
     };
-     document.getElementById("recipeBook").onclick = function () {
-        location.href = "/recipebook";
+     document.getElementById("landingPage").onclick = function () {
+        location.href = "/";
     };
     document.getElementById("signBtn").onclick = function(){
       location.href = "/userRegister";
