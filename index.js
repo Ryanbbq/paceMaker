@@ -48,7 +48,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname + '/public')));
-app.set('port', (8082));
+app.set('port', (8080));
 
 // start connection for mysql database
 
@@ -78,7 +78,6 @@ app.get('/startCookie', function(req, res) {
 });*/
 
 
-app.set('port', (8081));
 
 // get recipe uri
 app.get('/recipeURI', function(req, res) {
@@ -147,7 +146,7 @@ app.use(function(req, res, next) {
 //process.env.PORT
 //app.get('port')
 
-http.listen(process.env.PORT, function() {
+http.listen(app.get('port'), function() {
   console.log(process.env.IP + ":" +process.env.PORT );
 });
 
