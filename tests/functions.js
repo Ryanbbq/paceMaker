@@ -1,6 +1,6 @@
 function youtubeSearch() {
     console.log("YOUTUBE API");
-
+    var test;
     //Clears the div's contents after each new search
     $("#label").html("");
     $("#image").html("");
@@ -26,12 +26,15 @@ function youtubeSearch() {
                     "<iframe id='youtubeDiv' width='350' height='250' src='https://www.youtube.com/embed/" + data["items"][i]["id"]["videoId"] + "'></iframe>")
             }
             console.log("Success Status: " + status);
-            return status;
+            test = true;
         },
 
         complete: function(data, status) {
             console.log("Complete Status: " + status);
-            return status;
+            
         }
     }); //AJAX
+    
+    console.log(test);
+    return test;
 } //End of youtubeSearch() function.

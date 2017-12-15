@@ -1,9 +1,8 @@
 <script>
     //Recipe Search Function
 function youtubeSearch() {
-    var success1;
     console.log("YOUTUBE API");
-
+    var test;
     //Clears the div's contents after each new search
     $("#label").html("");
     $("#image").html("");
@@ -22,21 +21,25 @@ function youtubeSearch() {
 
         success: function(data, status) {
             console.log(data);
-            success1 = status;
+
             for (var i = 0; i < 3; i++) {
                 //console.log(data["items"][i]);
                 $("#youtubeSpan").append("<br>" +
                     "<iframe id='youtubeDiv' width='350' height='250' src='https://www.youtube.com/embed/" + data["items"][i]["id"]["videoId"] + "'></iframe>")
             }
+            console.log("Success Status: " + status);
+            test = true;
         },
 
         complete: function(data, status) {
-            success1 = status;
+            console.log("Complete Status: " + status);
+            
         }
     }); //AJAX
     
-    console.log("Success: " + success1);
-    } //End of youtubeSearch() function.
+    console.log(test);
+    return test;
+} //End of youtubeSearch() function.
 </script>
 <style>
     #imges{

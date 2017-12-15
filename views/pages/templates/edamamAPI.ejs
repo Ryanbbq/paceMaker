@@ -8,7 +8,7 @@
         //alert("Clicked!");
       $("#wait").css("display", "block");
         console.log("EDAMAM API");
-            
+            var success;
         //Clears the div's contents after each new search
         $("#label").html("");
         $("#image").html("");
@@ -17,7 +17,7 @@
         $("#recipeLabel").html("");
 
         //AJAX request for Edamam API
-        $.ajax({
+        var x = $.ajax({
             //get method
             type: "get",
                 
@@ -34,12 +34,12 @@
                 "q":$("#searchValue").val(),
                 "app_key":"", // API Key PLEASE USE YOUR OWN
             },
-        
+            
             success: function(data,status) {
                 
             // VIEW CONSOLE TO SEE JSON OBJECTS
               console.log(data);
-              console.log(data.length);
+              //console.log(data.length);
               
               // FOR LOOP TO DISPLAY JSON OBJECTS
               for(var i = 0 ; i <9;i++){
@@ -71,11 +71,13 @@
             $("#wait").css("display", "none");
             
               youtubeSearch();
-             console.log(status);
+             console.log("Status: " + status);
+             success = status;
             }
-        
 		});//AJAX
-
+    
+    console.log("x = " + x);
+        return x;
     } //End of recipeSearch() function.
     
 
