@@ -17,8 +17,13 @@ var clientPassword;
 var clientFirstname;
 var clientLastname;
 
-// global keys
-var googleVisionKEY = process.env.googleVisionKEY;
+// These are global variables for our firebase
+var dbConnection;
+var dbPass = process.env.dbPass;
+var dbHost = process.env.dbHost;
+var dbUser = process.env.dbUser;
+var dbName = process.env.dbName;
+console.log("Connected to :" + dbName);
 
 
 //file paths for routing...
@@ -46,12 +51,23 @@ app.use(express.static(path.join(__dirname + '/public')));
 app.set('port', (8082));
 
 // start connection for mysql database
-var con = mysql.createConnection({
-  host: "localhost",
-  user: "brilit96",
-  password: "",
-  database: "c9"
+
+function myDBOPEN(){
+  dbConnection = mysql.createConnection({
+  host: dbHost,
+  user: dbUser,
+  password: dbPass,
+  database: dbName,
+
 });
+
+dbConnection.query('SELECT 1 + 1 AS solution', (error, results, fields) => {
+  if (error) throw error;
+  console.log('The database is now connected ::', results[0].solution);
+});
+
+}
+myDBOPEN();
 /*
 app.get('/startCookie', function(req, res) {
   // Cookies that have not been signed
@@ -61,16 +77,18 @@ app.get('/startCookie', function(req, res) {
   console.log('Signed Cookies: ', req.signedCookies);
 });*/
 
+
 app.set('port', (8081));
 
 // get recipe uri
 app.get('/recipeURI', function(req, res) {
+
   var RECIPEVALUE = req.query.value;
   console.log(RECIPEVALUE);
   var test = req.query.testVal;
   console.log(test);
   var sql = "INSERT INTO  `recipebook` (  `recipeURI` ) VALUES ('" + RECIPEVALUE + "')";
-  con.query(sql, function(err, result) {
+  dbConnection.query(sql, function(err, result) {
     if (err) throw err;
     console.log("1 record inserted");
   });
@@ -89,26 +107,28 @@ app.use('/userRegister', userRegister);
 app.use('/userLogin', userLogin);
 
 app.get('/getLogin', function(req, res) {
-  
+
   console.log(req.query.username, req.query.password);
-  
-  var sql = "SELECT * FROM users WHERE username = '" + req.query.username + 
-            "' AND password = '" +  req.query.password + "'";
-  
+
+  var sql = "SELECT * FROM users WHERE username = '" + req.query.username +
+    "' AND password = '" + req.query.password + "'";
+
   console.log(sql);
-  
-  con.query(sql, function(err, result) {
+
+  dbConnection.query(sql, function(err, result) {
     if (err) throw err;
     console.log(result[0]);
-    if(result[0]) {
-      
+    if (result[0]) {
+
       console.log(result[0].username);
       res.cookie('username', result[0].username).send('cookie set');
       var userInside = result[0].username;
-    } else {
+    }
+    else {
       console.log("no results");
     }
   });
+ 
 });
 
 app.get('/logout', function(req, res) {
@@ -145,27 +165,27 @@ io.on('connection', function(socket) {
     clientPassword = data.passwordParam;
     clientFirstname = data.firstNameParam;
     clientLastname = data.lastNameParam;
-    
+
     var today = new Date();
     var dd = today.getDate();
-    var mm = today.getMonth()+1; //January is 0!
+    var mm = today.getMonth() + 1; //January is 0!
     var yyyy = today.getFullYear();
-    
-    if(dd<10) {
-      dd = '0'+dd
-    } 
-    
-    if(mm<10) {
-      mm = '0'+mm
-    } 
-    
-    today = mm + '/' + dd + '/' + yyyy;
-   
 
-    var sql = "INSERT INTO `users`(`username`, `email`, `password`,`date`,`firstName`,`lastName`) VALUES ('" + clientUsername + "', '" + clientEmail + "','" + clientPassword + "' , '"+today+ "','"+clientFirstname + "','" + clientLastname + "')";
+    if (dd < 10) {
+      dd = '0' + dd
+    }
+
+    if (mm < 10) {
+      mm = '0' + mm
+    }
+
+    today = mm + '/' + dd + '/' + yyyy;
+
+
+    var sql = "INSERT INTO `users`(`username`, `email`, `password`,`date`,`firstName`,`lastName`) VALUES ('" + clientUsername + "', '" + clientEmail + "','" + clientPassword + "' , '" + today + "','" + clientFirstname + "','" + clientLastname + "')";
     //var sql = "INSERT INTO `users`(`id`, `username`, `email`, `password`, `date`, `firstName`, `lastName`) VALUES (" + null + "," + clientUsername + "," + clientEmail +"," + clientPassword + "," + DATE + "," +clientFirstname + "," + clientLastname + ")";
     console.log(sql);
-    con.query(sql, function(err, result) {
+    dbConnection.query(sql, function(err, result) {
       if (err) throw err;
       console.log("1 record inserted");
     });
@@ -182,4 +202,5 @@ io.on('connection', function(socket) {
   */
 });
 
+// con.end();
 module.exports = app;
