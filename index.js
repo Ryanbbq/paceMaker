@@ -16,8 +16,9 @@ var clientEmail;
 var clientPassword;
 var clientFirstname;
 var clientLastname;
-var dbConnection;
 
+// These are global variables for our firebase
+var dbConnection;
 var dbPass = process.env.dbPass;
 var dbHost = process.env.dbHost;
 var dbUser = process.env.dbUser;
