@@ -66,7 +66,7 @@ dbConnection.query('SELECT 1 + 1 AS solution', (error, results, fields) => {
 });
 
 }
-
+myDBOPEN();
 /*
 app.get('/startCookie', function(req, res) {
   // Cookies that have not been signed
@@ -127,7 +127,7 @@ app.get('/getLogin', function(req, res) {
       console.log("no results");
     }
   });
-  dbConnection.end();
+ 
 });
 
 app.get('/logout', function(req, res) {
@@ -179,7 +179,7 @@ io.on('connection', function(socket) {
     }
 
     today = mm + '/' + dd + '/' + yyyy;
-myDBOPEN();
+
 
     var sql = "INSERT INTO `users`(`username`, `email`, `password`,`date`,`firstName`,`lastName`) VALUES ('" + clientUsername + "', '" + clientEmail + "','" + clientPassword + "' , '" + today + "','" + clientFirstname + "','" + clientLastname + "')";
     //var sql = "INSERT INTO `users`(`id`, `username`, `email`, `password`, `date`, `firstName`, `lastName`) VALUES (" + null + "," + clientUsername + "," + clientEmail +"," + clientPassword + "," + DATE + "," +clientFirstname + "," + clientLastname + ")";
@@ -188,7 +188,7 @@ myDBOPEN();
       if (err) throw err;
       console.log("1 record inserted");
     });
-dbConnection.end();
+
     //back to specific person who emitted
 
     //emits to everyone
