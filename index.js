@@ -127,7 +127,7 @@ app.use(function(req, res, next) {
 //process.env.PORT
 //app.get('port')
 
-http.listen(app.get('port'), function() {
+http.listen(process.env.PORT , function() {
   console.log(process.env.IP + ":" +process.env.PORT );
 });
 
