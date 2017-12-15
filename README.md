@@ -5,7 +5,7 @@
 https://pacemaker438.herokuapp.com/
 
 ## Team
-Monique, Brian, Ryan, Kristine
+Brian Little, Monique LaCroix, Ryan Lebon, Kristine Yvonne Laranjo
 
 ## Important Notes
 1. The login feature is extremely buggy, and one should not use a real password when signing up. It is required to be logged in in order to use the features. 
