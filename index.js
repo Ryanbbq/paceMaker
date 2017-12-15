@@ -48,7 +48,7 @@ app.set('port', (8082));
 // start connection for mysql database
 var con = mysql.createConnection({
   host: "localhost",
-  user: "ryanlb22",
+  user: "brilit96",
   password: "",
   database: "c9"
 });
@@ -127,7 +127,7 @@ app.use(function(req, res, next) {
 //process.env.PORT
 //app.get('port')
 
-http.listen(process.env.PORT, function() {
+http.listen(app.get('port'), function() {
   console.log(process.env.IP + ":" +process.env.PORT );
 });
 

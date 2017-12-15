@@ -198,7 +198,7 @@ a:not([href]):not([tabindex]){
             <div class="modal-body">
                   <input type="text" id="username" name="username" placeholder="Username"><br>
                   <input type="password" id="password" name="password"  placeholder="Password"><br>
-                  <button onclick="setLoginCookies()" name="loginForm" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Login</button>
+                  <button onclick="setLoginCookies(setHeaders())" name="loginForm" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Login</button>
             </div>
           </div>
         </div>
@@ -214,12 +214,13 @@ a:not([href]):not([tabindex]){
     <script>
    
       function getCookie(name) {
+        console.log(document.cookie.indexOf(name));
         var value = "; " + document.cookie;
         var parts = value.split("; " + name + "=");
         if (parts.length == 2) return parts.pop().split(";").shift();
       }
       
-      function setLoginCookies() {
+      function setLoginCookies(callback) {
         var username = $("#username").val();
         var password = $("#password").val();
         if(password == "" || username ==""){
@@ -231,12 +232,7 @@ a:not([href]):not([tabindex]){
         $.get('/getLogin', parameters, function(data){
          // console.log("Sending Login credentials");
         });
-        getUsername();
-      }
-      
-      
-      function getUsername(){
-        $("#title").html("Hello " + getCookie("username"));
+        
       }
       
       function logout() {
@@ -255,12 +251,15 @@ a:not([href]):not([tabindex]){
         $("#logoutLink").addClass("hidden");
       }
       
-      
-      console.log(getCookie("username"));
-      if(getCookie("username")) {
-        $("#title").html("Hello " + getCookie("username"));
-        $("#loginLink").addClass("hidden");
-        $("#signupLink").addClass("hidden");
-        $("#logoutLink").removeClass("hidden");
+      function setHeaders() {
+        console.log(getCookie("username"));
+        if(getCookie("username")) {
+          $("#title").html("Hello " + getCookie("username"));
+          $("#loginLink").addClass("hidden");
+          $("#signupLink").addClass("hidden");
+          $("#logoutLink").removeClass("hidden");
+        }
       }
+      
+      setHeaders();
     </script>
