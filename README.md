@@ -13,7 +13,7 @@ Brian Little, Monique LaCroix, Ryan Lebon, Kristine Yvonne Laranjo
     1. username: **teacher** 
     2. password: **123**
 3. We originally considered using the Facebook API for login, but decided to not go in that direction.
-**4. The database is able to store users. Please do not use real passwords if you decide to create an account**
+4. **The database is able to store users. Please do not use real passwords if you decide to create an account**
 5. The 3 APIs: Youtube, Google Vision, and Edamam are all functional
 6. The commit frequency is not correct and alot of the Lines of Code are from a ui template called semantic that I ended up not using and it caused my app to crash when I would try to deploy it to heroku
 
